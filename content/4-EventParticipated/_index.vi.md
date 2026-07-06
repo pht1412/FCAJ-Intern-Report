@@ -1,46 +1,40 @@
 ---
 title: "Các events đã tham gia"
-date: 2024-01-01
+date: 2026-07-05
 weight: 4
 chapter: false
 pre: " <b> 4. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
-
-> Trong phần này, các bạn cần liệt kê và mô tả chi tiết các sự kiện (event) mà mình đã tham gia trong suốt quá trình thực tập hoặc làm việc. 
+> Trong phần này, báo cáo sẽ liệt kê và mô tả chi tiết các sự kiện (event) công nghệ mà tôi đã tham gia trong suốt quá trình thực tập và nghiên cứu đồ án. 
 > 
-> Mỗi sự kiện nên được trình bày theo định dạng Event 1, Event 2, Event 3…, kèm theo các thông tin:
-> * Tên sự kiện
-> * Thời gian tổ chức
-> * Địa điểm (nếu có)
-> * Vai trò của bạn trong sự kiện (người tham dự, hỗ trợ tổ chức, diễn giả, v.v.)
-> * Mô tả ngắn gọn nội dung và hoạt động chính trong sự kiện
-> * Kết quả hoặc giá trị đạt được (bài học, kỹ năng mới, đóng góp cho nhóm/dự án)
-> * Việc liệt kê này giúp thể hiện rõ sự tham gia thực tế của bạn, cũng như các kỹ năng mềm và kinh nghiệm bạn đã tích lũy qua từng sự kiện.
+> Việc tham gia các sự kiện này không chỉ giúp mở rộng kiến thức về Cloud & AI, cập nhật các xu hướng công nghệ mới nhất từ các chuyên gia, mà còn là cơ hội rèn luyện tư duy thiết kế hệ thống và cọ xát thực tế qua các cuộc thi.
 
+Trong quá trình thực tập, tôi đã tham gia 3 events. Mỗi event là một trải nghiệm đáng nhớ với những kiến thức mới, hay và bổ ích, cùng với đó là những món quà thiết thực và những khoảnh khắc cạnh tranh rất tuyệt vời.
 
-Trong quá trình thực tập, em đã tham gia 2 events, với mỗi event là một trải nghiệm đáng nhớ với những kiến thức mới, hay và bổ ích, cùng với đó là nhứng món quà và những khoảnh khắc rất tuyệt vời.
-
-### [Event 1](4.1-Event1/)
-&emsp;**Tên sự kiện:** GenAI-powered App-DB Modernization workshop
-
-&emsp;**Thời gian:** 09:00 ngày 13/08/2025
-
-&emsp;**Địa điểm:** Tầng 26, tòa nhà Bitexco, số 02 đường Hải Triều, phường Sài Gòn, thành phố Hồ Chí Minh
-
+### [Event 1: FCAJ Community Day (Tháng 05/2026)](4.1-Event1/)
+&emsp;**Tên sự kiện:** FCAJ Community Day
+<br>
+&emsp;**Thời gian:** 09:00 - 12:00 ngày 23/05/2026
+<br>
+&emsp;**Địa điểm:** Tầng 26, tòa nhà Bitexco Financial Tower, số 02 đường Hải Triều, Quận 1, TP. Hồ Chí Minh
+<br>
 &emsp;**Vai trò trong sự kiện:** Người tham dự 
 
+### [Event 2: Giải đấu Cloud Architect](4.2-Event2/)
+&emsp;**Tên sự kiện:** Cuộc thi Cloud Architect
+<br>
+&emsp;**Thời gian:** Ngày 20/06/2026
+<br>
+&emsp;**Địa điểm:** Nền tảng thi đấu trực tuyến
+<br>
+&emsp;**Vai trò trong sự kiện:** Thí sinh thi đấu (Nhóm trưởng của nhóm PrimeOps)
 
-
-### [Event 2](4.2-Event2/)
-&emsp;**Tên sự kiện:** GenAI-powered App-DB Modernization workshop
-
-&emsp;**Thời gian:** 09:00 ngày 13/08/2025
-
-&emsp;**Địa điểm:** Tầng 26, tòa nhà Bitexco, số 02 đường Hải Triều, phường Sài Gòn, thành phố Hồ Chí Minh
-
-&emsp;**Vai trò trong sự kiện:** Người tham dự 
-
+### [Event 3: FCAJ Community Day (Tháng 06/2026)](4.3-Event3/)
+&emsp;**Tên sự kiện:** FCAJ Community Day - Chủ đề "Data Driven, AI Risen"
+<br>
+&emsp;**Thời gian:** 09:00 - 12:00 ngày 27/06/2026
+<br>
+&emsp;**Địa điểm:** Tầng 26, tòa nhà Bitexco Financial Tower, số 02 đường Hải Triều, Quận 1, TP. Hồ Chí Minh
+<br>
+&emsp;**Vai trò trong sự kiện:** Người tham dự

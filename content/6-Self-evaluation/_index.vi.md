@@ -1,40 +1,46 @@
 ---
 title: "Tự đánh giá"
-date: 2024-01-01
+date: 2026-07-05
 weight: 6
 chapter: false
 pre: " <b> 6. </b> "
 ---
 
-{{% notice warning %}}
+<!-- {{% notice warning %}}
 ⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
+{{% /notice %}} -->
 
-Trong suốt thời gian thực tập tại **[Tên công ty/tổ chức]** từ **[ngày bắt đầu]** đến **[ngày kết thúc]**, tôi đã có cơ hội học hỏi, rèn luyện và áp dụng kiến thức đã được trang bị tại trường vào môi trường làm việc thực tế.  
-Tôi đã tham gia **[mô tả ngắn gọn dự án hoặc công việc chính]**, qua đó cải thiện kỹ năng **[liệt kê kỹ năng: lập trình, phân tích, viết báo cáo, giao tiếp…]**.  
+Trong suốt thời gian thực tập tại chương trình Bootcamp của **AWS Study Group VN / FirstCloudAIJourney** từ **12/04/2026** đến **12/07/2026**, tôi đã có cơ hội rèn luyện năng lực chuyên môn và khẳng định bản thân trong môi trường làm việc thực tế với áp lực cao. 
 
-Về tác phong, tôi luôn cố gắng hoàn thành tốt nhiệm vụ, tuân thủ nội quy, và tích cực trao đổi với đồng nghiệp để nâng cao hiệu quả công việc.
+Trong dự án "Mini Social Network", tôi đảm nhận vai trò **Nhóm trưởng (Team Leader)**, dẫn dắt một đội ngũ đa chuyên môn gồm 5 thành viên (2 Developer, 1 Security, 2 Network). Công việc của tôi trải dài từ khâu quản trị đến thực chiến kỹ thuật, cụ thể:
+*   Phân tích bài toán, bóc tách các đầu việc chuyên sâu và phân bổ chéo cho đúng chuyên môn của từng thành viên. 
+*   Chủ trì các buổi họp báo cáo tiến độ hàng tuần và đồng bộ hóa luồng công việc của toàn đội.
+*   Trực tiếp tham gia vẽ sơ đồ kiến trúc hệ thống, cấu hình luồng CI/CD cho cả Frontend và Backend.
+*   Nâng cấp quy trình triển khai: Chuyển đổi từ thao tác thủ công (ClickOps) sang tự động hóa hạ tầng dưới dạng mã (IaC - CloudFormation) và tham gia giải quyết bài toán tối ưu chi phí Cloud.
+*   Đại diện nhóm giao dịch, ký hợp đồng với bên thứ ba để thiết lập tên miền chính thức cho dự án (`minisocial-network.id.vn`).
 
-Để phản ánh một cách khách quan quá trình thực tập, tôi xin tự đánh giá bản thân dựa trên các tiêu chí dưới đây:
+Qua quá trình này, tôi đã cải thiện rõ rệt các **kỹ năng chuyên môn (Hard skills)** như: Thiết kế kiến trúc AWS, Triển khai IaC, Quản trị CI/CD và Tối ưu hóa chi phí đám mây. Đồng thời, năng lực **kỹ năng mềm (Soft skills)** cũng được mài giũa mạnh mẽ, đặc biệt là kỹ năng Lãnh đạo, Điều phối vận hành nhóm và Giao tiếp chéo.
 
+Để phản ánh một cách khách quan, nghiêm khắc và thực tế nhất về quá trình thực tập, tôi xin tự đánh giá bản thân dựa trên các tiêu chí dưới đây:
 
-| STT | Tiêu chí                            | Mô tả                                                                                            | Tốt | Khá | Trung bình |
-| --- | ----------------------------------- | ------------------------------------------------------------------------------------------------ | --- | --- | ---------- |
-| 1   | **Kiến thức và kỹ năng chuyên môn** | Hiểu biết về ngành, áp dụng kiến thức vào thực tế, kỹ năng sử dụng công cụ, chất lượng công việc | ✅   | ☐   | ☐          |
-| 2   | **Khả năng học hỏi**                | Tiếp thu kiến thức mới, học hỏi nhanh                                                            | ☐   | ✅   | ☐          |
-| 3   | **Chủ động**                        | Tự tìm hiểu, nhận nhiệm vụ mà không chờ chỉ dẫn                                                  | ✅   | ☐   | ☐          |
-| 4   | **Tinh thần trách nhiệm**           | Hoàn thành công việc đúng hạn, đảm bảo chất lượng                                                | ✅   | ☐   | ☐          |
-| 5   | **Kỷ luật**                         | Tuân thủ giờ giấc, nội quy, quy trình làm việc                                                   | ☐   | ☐   | ✅          |
-| 6   | **Tính cầu tiến**                   | Sẵn sàng nhận feedback và cải thiện bản thân                                                     | ☐   | ✅   | ☐          |
-| 7   | **Giao tiếp**                       | Trình bày ý tưởng, báo cáo công việc rõ ràng                                                     | ☐   | ✅   | ☐          |
-| 8   | **Hợp tác nhóm**                    | Làm việc hiệu quả với đồng nghiệp, tham gia nhóm                                                 | ✅   | ☐   | ☐          |
-| 9   | **Ứng xử chuyên nghiệp**            | Tôn trọng đồng nghiệp, đối tác, môi trường làm việc                                              | ✅   | ☐   | ☐          |
-| 10  | **Tư duy giải quyết vấn đề**        | Nhận diện vấn đề, đề xuất giải pháp, sáng tạo                                                    | ☐   | ✅   | ☐          |
-| 11  | **Đóng góp vào dự án/tổ chức**      | Hiệu quả công việc, sáng kiến cải tiến, ghi nhận từ team                                         | ✅   | ☐   | ☐          |
-| 12  | **Tổng thể**                        | Đánh giá chung về toàn bộ quá trình thực tập                                                     | ✅   | ☐   | ☐          |
+| STT | Tiêu chí | Mô tả | Tốt | Khá | Trung bình |
+| --- | --- | --- | :---: | :---: | :---: |
+| 1 | **Kiến thức và kỹ năng chuyên môn** | Chuyển đổi thành công ClickOps sang IaC, cấu hình chuẩn CI/CD và thiết lập Domain. | ✅ | ☐ | ☐ |
+| 2 | **Khả năng học hỏi** | Nắm bắt nhanh kiến thức Cloud, nhưng tốc độ nghiên cứu còn bị giới hạn bởi ngoại ngữ. | ☐ | ✅ | ☐ |
+| 3 | **Chủ động** | Nhận vai trò đầu tàu, chủ động bóc tách và phân bổ công việc không chờ hối thúc. | ✅ | ☐ | ☐ |
+| 4 | **Tinh thần trách nhiệm** | Giám sát sát sao tiến độ hàng tuần, đảm bảo toàn đội 5 người ráp nối đúng deadline. | ✅ | ☐ | ☐ |
+| 5 | **Kỷ luật** | Vẫn còn tồn tại các vấn đề về quản lý thời gian cá nhân và tính tuân thủ quy trình. | ☐ | ☐ | ✅ |
+| 6 | **Tính cầu tiến** | Nhận diện được điểm yếu của bản thân nhưng cần sự quyết liệt hơn trong hành động sửa đổi. | ☐ | ✅ | ☐ |
+| 7 | **Giao tiếp** | Điều phối mượt mà các buổi họp nhóm, giải thích rõ ràng yêu cầu kỹ thuật cho các thành viên. | ✅ | ☐ | ☐ |
+| 8 | **Hợp tác nhóm** | Gắn kết thành công 3 mảng độc lập (Dev, Security, Network) thành một luồng thống nhất. | ✅ | ☐ | ☐ |
+| 9 | **Ứng xử chuyên nghiệp** | Làm việc bài bản với thành viên nội bộ và đối tác cung cấp dịch vụ tên miền bên thứ ba. | ✅ | ☐ | ☐ |
+| 10 | **Tư duy giải quyết vấn đề** | Xử lý tốt bài toán tối ưu chi phí và IaC, tuy nhiên đôi lúc còn chậm do rào cản tài liệu gốc. | ☐ | ✅ | ☐ |
+| 11 | **Đóng góp vào dự án/tổ chức** | Là hạt nhân cốt lõi định hình kiến trúc, luồng vận hành và sự ra đời của sản phẩm cuối. | ✅ | ☐ | ☐ |
+| 12 | **Tổng thể** | Thể hiện tốt vai trò Leader kỹ thuật, để lại nhiều dấu ấn lớn nhưng cần khắc phục kỷ luật. | ✅ | ☐ | ☐ |
 
-### Cần cải thiện
+### Cần cải thiện trong tương lai
 
-* Nâng cao tính kỹ luật, chấp hành nghiêm chỉnh nội quy của công ty hoặc bất kỳ trong một tổ chức nào
-* Cải thiện trong cách tư duy giải quyết vấn đề
-* Học cách giao tiếp tốt hơn trong giao tiếp hằng ngày và trong công việc, xử lý tình huống
+Dù dự án đã gặt hái được những thành công nhất định, tôi tự nhận thức sâu sắc những rào cản cốt lõi đang kìm hãm sự phát triển của bản thân:
+
+*   **Tính kỷ luật cá nhân:** Thiếu đi sự khắt khe với chính mình. Cần phải đưa bản thân vào khuôn khổ, tuân thủ nghiêm ngặt các quy định về thời gian, giờ giấc làm việc và cam kết của cá nhân đối với tổ chức.
+*   **Kỹ năng đọc tài liệu tiếng Anh chuyên ngành:** Trong hệ sinh thái Cloud/AWS, mọi Document và Best Practice cập nhật nhất đều bằng tiếng Anh. Sự hạn chế trong việc đọc hiểu tài liệu gốc làm giảm tốc độ tiếp thu kiến thức mới và làm chậm quá trình gỡ lỗi (debug). Đây là kỹ năng sinh tồn tôi bắt buộc phải trau dồi hàng ngày.

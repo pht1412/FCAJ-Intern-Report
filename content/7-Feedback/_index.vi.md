@@ -1,44 +1,48 @@
 ---
 title: "Chia sẻ, đóng góp ý kiến"
-date: 2024-01-01
+date: 2026-07-05
 weight: 7
 chapter: false
 pre: " <b> 7. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
 
->Tại đây bạn có thể tự do đóng góp ý kiến cá nhân về những trải nghiệm khi tham gia chương trình First Cloud AI Journey, giúp team FCAJ cải thiện những vấn đề còn thiếu sót dựa trên các hạng mục sau:
+> Tại đây, tôi xin tự do đóng góp ý kiến cá nhân và nhìn lại toàn bộ trải nghiệm khi tham gia chương trình thực tập Bootcamp của **FirstCloudAIJourney (FCAJ)**. Những đánh giá dưới đây được đúc kết từ góc nhìn thực tiễn của một người đảm nhận vai trò Team Leader của một nhóm đa chuyên môn (Dev, Security, Network).
 
 ### Đánh giá chung
 
-**1. Môi trường làm việc**  
-Môi trường làm việc rất thân thiện và cởi mở. Các thành viên trong FCAJ luôn sẵn sàng hỗ trợ khi mình gặp khó khăn, kể cả ngoài giờ làm việc. Không gian làm việc gọn gàng, thoải mái, giúp mình tập trung tốt hơn. Tuy nhiên, mình nghĩ có thể bổ sung thêm một số buổi giao lưu hoặc team bonding để mọi người hiểu nhau hơn.
+**1. Môi trường làm việc & Cộng đồng**  
+Cộng đồng FCAJ thực sự là một môi trường học thuật sôi nổi, thân thiện và đầy năng lượng. Việc mọi người liên tục chia sẻ các kiến trúc và kiến thức AWS giúp tôi luôn giữ được nhịp độ học tập. 
+Đặc biệt, môi trường này đã cho tôi nhận ra **sức mạnh của việc kết nối chéo chuyên môn (Cross-functional)**. Thay vì tự mình chật vật tìm hiểu công cụ bảo mật, tôi chỉ cần nhờ thành viên mảng Security trong nhóm sử dụng OWASP ZAP (DAST/SAST) để quét lỗ hổng backend. Sự phối hợp này mang tính ứng dụng rất cao và tối ưu thời gian triệt để.
 
 **2. Sự hỗ trợ của mentor / team admin**  
-Mentor hướng dẫn rất chi tiết, giải thích rõ ràng khi mình chưa hiểu và luôn khuyến khích mình đặt câu hỏi. Team admin hỗ trợ các thủ tục, tài liệu và tạo điều kiện để mình làm việc thuận lợi. Mình đánh giá cao việc mentor cho phép mình thử và tự xử lý vấn đề thay vì chỉ đưa đáp án.
+Trải nghiệm làm việc với các mentor và team admin của FCAJ thực sự quá tuyệt vời. Đội ngũ hỗ trợ gần như ngay lập tức mỗi khi nhóm gặp "đá tảng" về mặt kỹ thuật. Những lời góp ý, đánh giá đúng đắn từ các anh/chị đã đóng góp một phần không nhỏ vào việc định hình và hoàn thiện kiến trúc cuối cùng của dự án. 
 
 **3. Sự phù hợp giữa công việc và chuyên ngành học**  
-Công việc mình được giao phù hợp với kiến thức mình đã học ở trường, đồng thời mở rộng thêm những mảng mới mà mình chưa từng được tiếp cận. Nhờ vậy, mình vừa củng cố kiến thức nền tảng, vừa học thêm kỹ năng thực tế.
+Quá trình làm việc trực tiếp với hạ tầng Cloud và kiến trúc 3-Tier đã **phá vỡ hoàn toàn những ranh giới lý thuyết** trước đây của tôi. Trước khi đến với FCAJ, để host một dự án, tôi thường chật vật thuê VPS truyền thống hoặc dùng các nền tảng có sẵn như Render, Vercel. Nhờ chương trình, tôi đã làm chủ được AWS, giúp việc đưa một hệ thống phức tạp lên môi trường Production trở nên bài bản, dễ dàng và chuẩn Doanh nghiệp hơn rất nhiều.
 
 **4. Cơ hội học hỏi & phát triển kỹ năng**  
-Trong quá trình thực tập, mình học được nhiều kỹ năng mới như sử dụng công cụ quản lý dự án, kỹ năng làm việc nhóm, và cả cách giao tiếp chuyên nghiệp trong môi trường công ty. Mentor cũng chia sẻ nhiều kinh nghiệm thực tế giúp mình định hướng tốt hơn cho sự nghiệp.
+* **Về kỹ năng cứng (Hard skill):** Tôi tâm đắc nhất với việc rèn luyện được tư duy DevOps, đặc biệt là kỹ năng tự động hóa hạ tầng dưới dạng mã (IaC) thông qua việc viết các file YAML triển khai lên AWS CloudFormation.
+* **Về kỹ năng mềm (Soft skill):** Kỹ năng **vận hành nhân sự đa chuyên môn** là bước tiến lớn nhất. Ban đầu, tôi đã phải chủ động đi tìm hiểu xem sinh viên các ngành khác (Network, Security) thực chất họ học gì, làm đồ án ra sao. Sự thấu hiểu đó giúp tôi biết cách khai thác tối đa điểm mạnh của từng người, từ đó vận hành dự án trơn tru.
 
 **5. Văn hóa & tinh thần đồng đội**  
-Văn hóa công ty rất tích cực: mọi người tôn trọng lẫn nhau, làm việc nghiêm túc nhưng vẫn vui vẻ. Khi có dự án gấp, mọi người cùng nhau cố gắng, hỗ trợ không phân biệt vị trí. Điều này giúp mình cảm thấy mình là một phần của tập thể, dù chỉ là thực tập sinh.
+Các thành viên trong nhóm luôn sẵn sàng "back-up" công việc cho nhau. Tuy nhiên, với vai trò Leader, phương châm của tôi là: **Chỉn chu từ khâu lập kế hoạch để hạn chế tối đa việc phải đi "chữa cháy"**. 
+Bằng kỹ năng tính toán và phân bổ thời gian hợp lý, tôi đảm bảo mọi người chỉ cần làm đúng phần việc và đúng deadline của mình là hệ thống sẽ khớp nối. Nhờ vậy, dù dự án lớn, các thành viên gần như không bao giờ rơi vào trạng thái áp lực hay quá tải.
 
 **6. Chính sách / phúc lợi cho thực tập sinh**  
-Công ty có hỗ trợ phụ cấp thực tập và tạo điều kiện về thời gian linh hoạt khi cần thiết. Ngoài ra, việc được tham gia các buổi đào tạo nội bộ là một điểm cộng lớn.
+Khoản tài trợ **$200 AWS Credits** từ ban tổ chức thực sự là món quà "quý hơn vàng". Mặc dù nhóm đã nỗ lực thiết kế kiến trúc tối ưu nhất, nhưng hệ thống Cloud thực tế luôn cần chi phí duy trì. Nhờ số credits này, tôi đã có một không gian Sandbox hoàn hảo để triển khai, vận hành và thử nghiệm hệ thống thực tế với chi phí cá nhân gần như bằng 0.
 
 
 ### Một số câu hỏi khác
-- Điều bạn **hài lòng nhất** trong thời gian thực tập?  
-- Điều bạn nghĩ công ty **cần cải thiện** cho các thực tập sinh sau?  
-- Nếu giới thiệu cho bạn bè, bạn có **khuyên họ thực tập ở đây không**? Vì sao?  
+
+- **Khoảnh khắc tự hào nhất trong thời gian thực tập:** Đó là khi một thành viên trong nhóm thắc mắc với tôi: *"Tại sao tui làm việc tui, bạn làm việc bạn, ai cũng chỉ theo deadline của người đó, vậy mà đến cuối tuần báo cáo, mọi thứ trong hệ thống lại khớp nối với nhau hoàn hảo đến vậy?"*.
+Câu hỏi đó khiến tôi cực kỳ tự hào về khả năng vận hành nhóm vừa chớm nở của mình. Dù chỉ là quản lý 5 người, nhưng sự nhịp nhàng đó là một bước đà rất lớn để tôi tự tin hướng đến các vị trí Tech Lead trong tương lai.
+
+- **Về rào cản tài liệu học tập:**
+Dù AWS và chương trình FCAJ đã cung cấp rất nhiều tài liệu tiếng Việt chất lượng, nhưng hệ sinh thái AWS là vô tận. Cá nhân tôi nhận thấy việc chủ động ép bản thân đọc tài liệu gốc tiếng Anh là con đường bắt buộc để sinh tồn và phát triển nhanh trong ngành Cloud.
 
 
 ### Đề xuất & mong muốn
-- Bạn có đề xuất gì để cải thiện trải nghiệm trong kỳ thực tập?  
-- Bạn có muốn tiếp tục chương trình này trong tương lai?
-- Góp ý khác (tự do chia sẻ):
+
+- **Góp ý cải thiện:** Tôi hy vọng trong các khóa Bootcamp tới, FCAJ có thể tổ chức thêm các buổi định hướng ngắn giúp các bạn sinh viên (đặc biệt là các bạn không chuyên Cloud) làm quen với văn hóa đọc tài liệu (Documentation) bằng tiếng Anh từ sớm, giúp các bạn bớt bỡ ngỡ khi debug hệ thống.
+
+*Lời cuối, tôi xin gửi lời cảm ơn chân thành nhất đến đội ngũ Ban tổ chức, Mentor và Team Admin của FirstCloudAIJourney đã tạo ra một sân chơi thực chiến, chuyên nghiệp và đầy giá trị.*

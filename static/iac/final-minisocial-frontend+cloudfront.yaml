@@ -1,0 +1,111 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'MiniSocialNetwork - Frontend Stack CHUAN ENTERPRISE (S3 + CloudFront OAC, Custom Domain, SSM Parameters)'
+
+Parameters:
+  ProjectName:
+    Type: String
+    Default: minisocial
+    Description: 'Ten du an de lam tien to cho cac resources.'
+  
+  # 🟢 BẢO MẬT & LINH HOẠT: Đưa Tên miền lên Parameter
+  FrontendDomainName:
+    Type: String
+    Default: minisocial-network.id.vn
+    Description: 'Ten mien chinh thuc cua Frontend'
+
+  # 🟢 BẢO MẬT & LINH HOẠT: Gọi ARN chứng chỉ từ SSM Parameter Store (Phải tạo ở us-east-1)
+  CloudFrontAcmCertificateArnParam:
+    Type: AWS::SSM::Parameter::Value<String>
+    Default: /minisocial/frontend/acm-certificate-arn
+    Description: 'Duong dan SSM Parameter Store chua ARN cua chung chi ACM (Luu y: Phai tao o Region us-east-1)'
+
+Resources:
+  # 1. TẠO S3 BUCKET (Chặn Public 100%)
+  FrontendBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub "${ProjectName}-frontend-${AWS::AccountId}-${AWS::Region}"
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+
+  # 2. TẠO ORIGIN ACCESS CONTROL (OAC)
+  CloudFrontOriginAccessControl:
+    Type: AWS::CloudFront::OriginAccessControl
+    Properties:
+      OriginAccessControlConfig:
+        Name: !Sub "${ProjectName}-frontend-oac"
+        OriginAccessControlOriginType: s3
+        SigningBehavior: always
+        SigningProtocol: sigv4
+
+  # 3. TẠO CLOUDFRONT DISTRIBUTION
+  CloudFrontDistribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Enabled: true
+        
+        Aliases:
+          - !Ref FrontendDomainName
+          
+        DefaultRootObject: index.html
+        
+        ViewerCertificate:
+          # 🟢 SỬ DỤNG BIẾN ĐỘNG TỪ SSM PARAMETER STORE
+          AcmCertificateArn: !Ref CloudFrontAcmCertificateArnParam
+          SslSupportMethod: sni-only
+          MinimumProtocolVersion: TLSv1.2_2021
+          
+        CustomErrorResponses:
+          - ErrorCode: 403
+            ResponseCode: 200
+            ResponsePagePath: /index.html
+          - ErrorCode: 404
+            ResponseCode: 200
+            ResponsePagePath: /index.html
+            
+        Origins:
+          - DomainName: !GetAtt FrontendBucket.RegionalDomainName
+            Id: S3Origin
+            OriginAccessControlId: !Ref CloudFrontOriginAccessControl
+            S3OriginConfig:
+              OriginAccessIdentity: ""
+              
+        DefaultCacheBehavior:
+          TargetOriginId: S3Origin
+          ViewerProtocolPolicy: redirect-to-https 
+          Compress: true
+          CachePolicyId: 658327ea-f89d-4fab-a63d-7e88639e58f6 
+
+  # 4. BUCKET POLICY (Cấp quyền cho CloudFront đọc file)
+  FrontendBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref FrontendBucket
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: cloudfront.amazonaws.com
+            Action: s3:GetObject
+            Resource: !Sub "${FrontendBucket.Arn}/*"
+            Condition:
+              StringEquals:
+                AWS:SourceArn: !Sub "arn:aws:cloudfront::${AWS::AccountId}:distribution/${CloudFrontDistribution}"
+
+Outputs:
+  FrontendBucketName:
+    Description: "Ten S3 Bucket luu tru Frontend"
+    Value: !Ref FrontendBucket
+    
+  CloudFrontDistributionId:
+    Description: "ID cua CloudFront Distribution (dung de cap nhat Jenkinsfile)"
+    Value: !Ref CloudFrontDistribution
+    
+  CustomDomainURL:
+    Description: "URL chinh thuc cua ung dung MiniSocialNetwork"
+    Value: !Sub "https://${FrontendDomainName}"

@@ -226,3 +226,21 @@ div.notices.info p {
   border-top: 30px solid #fd9827;
   background: #fff2db;
 }
+
+/* === Fix chapter page centering === */
+/* Override Hugo Learn theme's center-align for content-heavy chapter pages */
+#chapter p {
+  text-align: left;
+}
+
+#chapter li {
+  text-align: left;
+}
+
+#chapter td {
+  text-align: left;
+}
+
+#chapter th {
+  text-align: left;
+}

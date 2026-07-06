@@ -1,125 +1,55 @@
 ---
 title: "Event 2"
-date: 2024-01-01
-weight: 1
+date: 2026-06-20
+weight: 2
 chapter: false
 pre: " <b> 4.2. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
+# Bài thu hoạch sự kiện thi đấu “Cloud Architect”
 
-# Bài thu hoạch “GenAI-powered App-DB Modernization workshop”
+![Cloud Architect Event](/images/4-EventParticipated/Evt_2.jpeg)
 
-### Mục Đích Của Sự Kiện
+### Mục Đích Sự Kiện & Đội Thi
 
-- Chia sẻ best practices trong thiết kế ứng dụng hiện đại
-- Giới thiệu phương pháp DDD và event-driven architecture
-- Hướng dẫn lựa chọn compute services phù hợp
-- Giới thiệu công cụ AI hỗ trợ development lifecycle
+Sự kiện "Cloud Architect" được tổ chức dưới định dạng một giải đấu kiến thức kịch tính giữa các nhóm học viên/kỹ sư Cloud. Mục tiêu của cuộc thi là kiểm tra tốc độ phản xạ, tư duy thiết kế hệ thống và kiến thức tổng hợp về hệ sinh thái AWS từ cấp độ cơ bản đến chuyên gia. 
 
-### Danh Sách Diễn Giả
+Tôi vinh dự được tham gia thi đấu cùng các thành viên trong đội với tên gọi **PrimeOps**. 
 
-- **Jignesh Shah** - Director, Open Source Databases
-- **Erica Liu** - Sr. GTM Specialist, AppMod
-- **Fabrianne Effendi** - Assc. Specialist SA, Serverless Amazon Web Services
+### Thể Lệ Thi Đấu Khắc Nghiệt
 
-### Nội Dung Nổi Bật
+Cuộc thi được chia làm 3 vòng với độ khó tăng dần, phân bổ theo các chứng chỉ AWS: Cloud Practitioner (Cấp độ cơ sở - 10 điểm), SAA (Solutions Architect Associate - 20 điểm) và SAP (Solutions Architect Professional - 50 điểm).
 
-#### Đưa ra các ảnh hưởng tiêu cực của kiến trúc ứng dụng cũ
+#### Cấu trúc các vòng thi:
+- **Vòng loại (Tứ kết):** 10 câu hỏi (7 câu Practitioner, 2 câu SAA, 1 câu SAP).
+- **Vòng Bán kết:** 10 câu hỏi (5 câu Practitioner, 3 câu SAA, 2 câu SAP).
+- **Vòng Chung kết:** 10 câu hỏi (3 câu Practitioner, 4 câu SAA, 3 câu SAP).
 
-- Thời gian release sản phẩm lâu → Mất doanh thu/bỏ lỡ cơ hội
-- Hoạt động kém hiệu quả → Mất năng suất, tốn kém chi phí
-- Không tuân thủ các quy định về bảo mật → Mất an ninh, uy tín
+#### Các quyền trợ giúp chiến thuật:
+Mỗi đội được trang bị 2 "phao cứu sinh" mang tính chiến thuật cao:
+1. **Rủi ro tối thiểu:** Nếu trả lời đúng, đội được cộng một nửa số điểm của câu hỏi. Nếu sai, không bị trừ điểm.
+2. **Ngôi sao hy vọng:** Đây là con dao hai lưỡi. Trả lời đúng sẽ được **nhân đôi** số điểm, nhưng nếu sai sẽ bị **trừ gấp đôi** số điểm của câu hỏi đó.
 
-#### Chuyển đổi sang kiến trúc ứng dụng mới - Microservice Architecture
+### Trải Nghiệm Thi Đấu: Cú Lội Ngược Dòng Của... Sự May Mắn
 
-Chuyển đổi thành hệ thống modular – từng chức năng là một **dịch vụ độc lập** giao tiếp với nhau qua **sự kiện** với 3 trụ cột cốt lõi:
+Ngay từ trận Vòng 1 (Tứ kết), đội PrimeOps của chúng tôi đã chạm trán với đội KLKÂT. Xuyên suốt trận đấu, PrimeOps đã thể hiện một phong độ hủy diệt. Bằng việc nắm vững kiến thức vững chắc ở các câu hỏi Practitioner và SAA, chúng tôi liên tục đưa ra đáp án chính xác, làm chủ hoàn toàn thế trận và thiết lập một khoảng cách an toàn, dẫn trước đối thủ tới **70 điểm**.
 
-- **Queue Management**: Xử lý tác vụ bất đồng bộ
-- **Caching Strategy:** Tối ưu performance
-- **Message Handling:** Giao tiếp linh hoạt giữa services
+Tuy nhiên, kịch tính của cuộc thi lại nằm ở câu hỏi cuối cùng – một câu hỏi thuộc cấp độ **SAP (50 điểm)** mang tính đánh đố cực cao.
 
-#### Domain-Driven Design (DDD)
+- **Tình thế:** Ở thời điểm này, đối thủ của chúng tôi quyết định "được ăn cả, ngã về không" khi kích hoạt quyền **Ngôi sao hy vọng**. Nếu đúng, họ sẽ có 100 điểm. 
+- **Diễn biến:** Cả hai đội đều bị làm khó bởi lượng kiến thức quá sâu của câu hỏi này. Thành thực mà nói, không ai trong cả hai đội thực sự biết chắc chắn đáp án đúng là gì. Mọi thứ lúc này thu hẹp lại chỉ còn là một bài toán xác suất.
+- **Kết quả:** Đội đối thủ đã lựa chọn đúng hoàn toàn nhờ vào trực giác và sự may mắn. Họ lập tức giành được 100 điểm, san lấp hoàn toàn khoảng cách 70 điểm mà PrimeOps đã dày công xây dựng từ đầu trận, và giành chiến thắng chung cuộc.
 
-- **Phương pháp 4 bước**: Xác định domain events → sắp xếp timeline → identify actors → xác định bounded contexts
-- **Case study bookstore**: Minh họa cách áp dụng DDD thực tế
-- **Context mapping**: 7 patterns tích hợp bounded contexts
+### Những Gì Học Được (Bài học về sự may mắn)
 
-#### Event-Driven Architecture
+Dù ngậm ngùi dừng bước ngay tại vòng đầu tiên, nhưng trải nghiệm này đã để lại cho tôi những bài học cực kỳ sâu sắc, không chỉ về mặt kỹ thuật mà còn về tư duy vận hành hệ thống:
 
-- **3 patterns tích hợp**: Publish/Subscribe, Point-to-point, Streaming
-- **Lợi ích**: Loose coupling, scalability, resilience
-- **So sánh sync vs async**: Hiểu rõ trade-offs (sự đánh đổi)
+- **May mắn là một phần của cuộc chơi (và thực tế):** Trong một hệ thống Cloud, dù bạn có xây dựng kiến trúc hoàn hảo đến đâu, chuẩn bị kỹ lưỡng thế nào (như cách PrimeOps dẫn trước 70 điểm), những biến số không lường trước (Zero-day vulnerabilities, thiên tai ảnh hưởng đến Data Center) vẫn luôn chực chờ. Đôi khi, đối thủ cạnh tranh có thể vượt lên chỉ nhờ một quyết định "đúng lúc, đúng chỗ". 
+- **Quản trị rủi ro (Risk Management):** Việc đối thủ dám sử dụng "Ngôi sao hy vọng" ở câu hỏi khó nhất cho thấy tư duy chấp nhận rủi ro cực đoan. Trong thiết kế kiến trúc (Architecture Design), chúng ta luôn phải cân nhắc bài toán đánh đổi (Trade-offs) giữa rủi ro và lợi ích.
+- **Không ngừng học hỏi:** Câu hỏi cấp độ SAP cuối cùng là lời nhắc nhở rằng biển kiến thức về AWS là vô tận. Sự chuẩn bị tốt nhất để hạn chế yếu tố "may mắn" của đối thủ chính là nỗ lực lấp đầy những lỗ hổng kiến thức của chính mình.
 
-#### Compute Evolution
-
-- **Shared Responsibility Model**: Từ EC2 → ECS → Fargate → Lambda
-- **Serverless benefits**: No server management, auto-scaling, pay-for-value
-- **Functions vs Containers**: Criteria lựa chọn phù hợp
-
-#### Amazon Q Developer
-
-- **SDLC automation**: Từ planning đến maintenance
-- **Code transformation**: Java upgrade, .NET modernization
-- **AWS Transform agents**: VMware, Mainframe, .NET migration
-
-### Những Gì Học Được
-
-#### Tư Duy Thiết Kế
-
-- **Business-first approach**: Luôn bắt đầu từ business domain, không phải technology
-- **Ubiquitous language**: Importance của common vocabulary giữa business và tech teams
-- **Bounded contexts**: Cách identify và manage complexity trong large systems
-
-#### Kiến Trúc Kỹ Thuật
-
-- **Event storming technique**: Phương pháp thực tế để mô hình hóa quy trình kinh doanh
-- Sử dụng **Event-driven communication** thay vì synchronous calls
-- **Integration patterns**: Hiểu khi nào dùng sync, async, pub/sub, streaming
-- **Compute spectrum**: Criteria chọn từ VM → containers → serverless
-
-#### Chiến Lược Hiện Đại Hóa
-
-- **Phased approach**: Không rush, phải có roadmap rõ ràng
-- **7Rs framework**: Nhiều con đường khác nhau tùy thuộc vào đặc điểm của mỗi ứng dụng
-- **ROI measurement**: Cost reduction + business agility
-
-### Ứng Dụng Vào Công Việc
-
-- **Áp dụng DDD** cho project hiện tại: Event storming sessions với business team
-- **Refactor microservices**: Sử dụng bounded contexts để identify service boundaries
-- **Implement event-driven patterns**: Thay thế một số sync calls bằng async messaging
-- **Serverless adoption**: Pilot AWS Lambda cho một số use cases phù hợp
-- **Try Amazon Q Developer**: Integrate vào development workflow để boost productivity
-
-### Trải nghiệm trong event
-
-Tham gia workshop **“GenAI-powered App-DB Modernization”** là một trải nghiệm rất bổ ích, giúp tôi có cái nhìn toàn diện về cách hiện đại hóa ứng dụng và cơ sở dữ liệu bằng các phương pháp và công cụ hiện đại. Một số trải nghiệm nổi bật:
-
-#### Học hỏi từ các diễn giả có chuyên môn cao
-- Các diễn giả đến từ AWS và các tổ chức công nghệ lớn đã chia sẻ **best practices** trong thiết kế ứng dụng hiện đại.
-- Qua các case study thực tế, tôi hiểu rõ hơn cách áp dụng **Domain-Driven Design (DDD)** và **Event-Driven Architecture** vào các project lớn.
-
-#### Trải nghiệm kỹ thuật thực tế
-- Tham gia các phiên trình bày về **event storming** giúp tôi hình dung cách **mô hình hóa quy trình kinh doanh** thành các domain events.
-- Học cách **phân tách microservices** và xác định **bounded contexts** để quản lý sự phức tạp của hệ thống lớn.
-- Hiểu rõ trade-offs giữa **synchronous và asynchronous communication** cũng như các pattern tích hợp như **pub/sub, point-to-point, streaming**.
-
-#### Ứng dụng công cụ hiện đại
-- Trực tiếp tìm hiểu về **Amazon Q Developer**, công cụ AI hỗ trợ SDLC từ lập kế hoạch đến maintenance.
-- Học cách **tự động hóa code transformation** và pilot serverless với **AWS Lambda**, từ đó nâng cao năng suất phát triển.
-
-#### Kết nối và trao đổi
-- Workshop tạo cơ hội trao đổi trực tiếp với các chuyên gia, đồng nghiệp và team business, giúp **nâng cao ngôn ngữ chung (ubiquitous language)** giữa business và tech.
-- Qua các ví dụ thực tế, tôi nhận ra tầm quan trọng của **business-first approach**, luôn bắt đầu từ nhu cầu kinh doanh thay vì chỉ tập trung vào công nghệ.
-
-#### Bài học rút ra
-- Việc áp dụng DDD và event-driven patterns giúp giảm **coupling**, tăng **scalability** và **resilience** cho hệ thống.
-- Chiến lược hiện đại hóa cần **phased approach** và đo lường **ROI**, không nên vội vàng chuyển đổi toàn bộ hệ thống.
-- Các công cụ AI như Amazon Q Developer có thể **boost productivity** nếu được tích hợp vào workflow phát triển hiện tại.
+Sự kiện "Cloud Architect" kết thúc với một chút tiếc nuối cho PrimeOps, nhưng chắc chắn là một kỷ niệm vô giá và là động lực để tôi tiếp tục theo đuổi các chứng chỉ AWS cấp độ cao hơn.
 
 #### Một số hình ảnh khi tham gia sự kiện
-* Thêm các hình ảnh của các bạn tại đây
-> Tổng thể, sự kiện không chỉ cung cấp kiến thức kỹ thuật mà còn giúp tôi thay đổi cách tư duy về thiết kế ứng dụng, hiện đại hóa hệ thống và phối hợp hiệu quả hơn giữa các team.
+
+![Cloud Architect Team Event](/images/4-EventParticipated/2006_evt_w9.jpg)

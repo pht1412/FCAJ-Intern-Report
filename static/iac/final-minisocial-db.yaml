@@ -1,0 +1,143 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Ha tang RDS SQL Server CHUAN ENTERPRISE cho Mini Social Network'
+
+Parameters:
+  VpcId:
+    Type: AWS::EC2::VPC::Id
+    Description: 'Chon ID cua MiniSocial-VPC da tao o Stack truoc'
+  
+  PrivateSubnetComputeId:
+    Type: AWS::EC2::Subnet::Id
+    Description: 'Chon ID cua MiniSocial-PrivateSubnet-Compute (Tu Stack 1)'
+
+  PrivateSubnetDataId:
+    Type: AWS::EC2::Subnet::Id
+    Description: 'Chon ID cua MiniSocial-PrivateSubnet-Data (Tu Stack 1)'
+
+  BackendSecurityGroupId:
+    Type: AWS::EC2::SecurityGroup::Id
+    Description: 'Chon ID cua MiniSocial-Backend-SG de cho phep ket noi vao DB'
+
+  # 🟢 BẢO MẬT: Nhận mật khẩu từ ngoài vào thay vì Hardcode
+  DBMasterPassword:
+    Type: String
+    NoEcho: true
+    Description: 'Nhap mat khau Master cho Database (Khong duoc chua dau / hoac @)'
+    MinLength: 8
+
+Resources:
+  # 1. TẠO DATABASE SECURITY GROUP
+  DBSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Cho phep traffic tu Backend (ECS) truy cap vao SQL Server
+      VpcId: !Ref VpcId
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 1433  
+          ToPort: 1433
+          SourceSecurityGroupId: !Ref BackendSecurityGroupId
+      Tags:
+        - Key: Name
+          Value: MiniSocial-SQLServer-SG
+
+  # 2. TẠO DB SUBNET GROUP
+  MyDBSubnetGroup:
+    Type: AWS::RDS::DBSubnetGroup
+    Properties:
+      DBSubnetGroupDescription: Subnet group cho RDS SQL Server
+      SubnetIds:
+        - !Ref PrivateSubnetComputeId
+        - !Ref PrivateSubnetDataId
+      Tags:
+        - Key: Name
+          Value: MiniSocial-DB-SubnetGroup
+
+  # 3. KHỞI TẠO RDS INSTANCE 
+  MyRDSInstance:
+    Type: AWS::RDS::DBInstance
+    # 🟢 AN TOÀN DỮ LIỆU: Tự động chụp Snapshot nếu Stack bị xóa, không bị mất data
+    DeletionPolicy: Snapshot
+    Properties:
+      DBInstanceIdentifier: minisocial-sqlserver
+      Engine: sqlserver-ex          
+      EngineVersion: "15.00"        
+      DBInstanceClass: db.t3.small  
+      AllocatedStorage: 20
+      StorageType: gp2
+      MasterUsername: pht       
+      # 🟢 BẢO MẬT: Sử dụng Parameter an toàn
+      MasterUserPassword: !Ref DBMasterPassword  
+      DBSubnetGroupName: !Ref MyDBSubnetGroup
+      VPCSecurityGroups:
+        - !Ref DBSecurityGroup
+      PubliclyAccessible: false     
+      MultiAZ: false # Giữ False do dùng bản Express. 
+      
+      # 🟢 BÙ ĐẮP SẴN SÀNG: Cấu hình tự động sao lưu 7 ngày để chống rủi ro Single-AZ
+      BackupRetentionPeriod: 7
+      PreferredBackupWindow: "19:00-19:30" # Khoảng 2h sáng giờ VN
+      StorageEncrypted: true
+
+  # =========================================================================
+  # TỐI ƯU CHI PHÍ: EVENTBRIDGE SCHEDULER - HẸN GIỜ TẮT/BẬT DATABASE
+  # =========================================================================
+
+  # 4. IAM ROLE CHO EVENTBRIDGE SCHEDULER
+  EventBridgeRDSRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: scheduler.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: RDSSchedulePolicy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - rds:StartDBInstance
+                  - rds:StopDBInstance
+                # Chỉ cho phép bật/tắt đúng cái Database của dự án này, cấm đụng DB khác
+                Resource: !Sub "arn:aws:rds:${AWS::Region}:${AWS::AccountId}:db:${MyRDSInstance}"
+
+  # 5. LỊCH TẮT DATABASE (10:00 PM HÀNG NGÀY)
+  StopRDSSchedule:
+    Type: AWS::Scheduler::Schedule
+    Properties:
+      Name: minisocial-rds-stop-schedule
+      Description: "Tu dong tat RDS luc 10h toi de tiet kiem chi phi"
+      ScheduleExpression: "cron(0 22 * * ? *)"
+      ScheduleExpressionTimezone: "Asia/Ho_Chi_Minh" # 🟢 Chuẩn múi giờ VN
+      FlexibleTimeWindow:
+        Mode: "OFF" # Chạy chính xác từng phút, không du di
+      Target:
+        # Gọi thẳng API của AWS SDK (Không cần dùng Lambda trung gian)
+        Arn: "arn:aws:scheduler:::aws-sdk:rds:stopDBInstance"
+        RoleArn: !GetAtt EventBridgeRDSRole.Arn
+        Input: !Sub '{"DbInstanceIdentifier": "${MyRDSInstance}"}'
+
+  # 6. LỊCH BẬT DATABASE (07:00 AM HÀNG NGÀY)
+  StartRDSSchedule:
+    Type: AWS::Scheduler::Schedule
+    Properties:
+      Name: minisocial-rds-start-schedule
+      Description: "Tu dong bat RDS luc 7h sang de don traffic"
+      ScheduleExpression: "cron(0 7 * * ? *)"
+      ScheduleExpressionTimezone: "Asia/Ho_Chi_Minh" # 🟢 Chuẩn múi giờ VN
+      FlexibleTimeWindow:
+        Mode: "OFF"
+      Target:
+        Arn: "arn:aws:scheduler:::aws-sdk:rds:startDBInstance"
+        RoleArn: !GetAtt EventBridgeRDSRole.Arn
+        Input: !Sub '{"DbInstanceIdentifier": "${MyRDSInstance}"}'
+
+Outputs:
+  RDSEndpoint:
+    Description: Endpoint de Backend ket noi den RDS SQL Server
+    Value: !GetAtt MyRDSInstance.Endpoint.Address

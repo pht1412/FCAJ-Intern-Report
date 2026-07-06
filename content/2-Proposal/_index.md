@@ -1,115 +1,161 @@
 ---
 title: "Proposal"
-date: 2024-01-01
+date: 2026-07-01
 weight: 2
 chapter: false
-pre: " <b> 2. </b> "
+pre: "  2.  "
 ---
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.
-{{% /notice %}}
 
-In this section, you need to summarize the contents of the workshop that you **plan** to conduct.
-
-# IoT Weather Platform for Lab Research
-## A Unified AWS Serverless Solution for Real-Time Weather Monitoring
+# Mini Social Network
+## A Cloud-Native AWS Infrastructure with Automated CI/CD Pipelines
 
 ### 1. Executive Summary
-The IoT Weather Platform is designed for the ITea Lab team in Ho Chi Minh City to enhance weather data collection and analysis. It supports up to 5 weather stations, with potential scalability to 10-15, utilizing Raspberry Pi edge devices with ESP32 sensors to transmit data via MQTT. The platform leverages AWS Serverless services to deliver real-time monitoring, predictive analytics, and cost efficiency, with access restricted to 5 lab members via Amazon Cognito.
+The Mini Social Network (MiniSocial) is a production-grade academic project designed to demonstrate advanced DevOps and Cloud Engineering workflows. It supports a scalable, full-stack social platform, utilizing a cloud-native architecture to deliver high availability and security. The platform leverages AWS services to provide automated CI/CD pipelines, robust networking, and real-time monitoring, with access securely managed and delivered globally through CloudFront and WAF.
 
 ### 2. Problem Statement
-### What’s the Problem?
-Current weather stations require manual data collection, becoming unmanageable with multiple units. There is no centralized system for real-time data or analytics, and third-party platforms are costly and overly complex.
+**What’s the Problem?**
+Building and deploying a modern full-stack application often requires addressing significant infrastructure complexities. Traditional environments lack streamlined, automated deployment pipelines, leading to manual errors and slow delivery. Furthermore, ensuring high availability, security against web attacks, and cost efficiency in a manual deployment model is highly difficult and resource-intensive.
 
-### The Solution
-The platform uses AWS IoT Core to ingest MQTT data, AWS Lambda and API Gateway for processing, Amazon S3 for storage (including a data lake), and AWS Glue Crawlers and ETL jobs to extract, transform, and load data from the S3 data lake to another S3 bucket for analysis. AWS Amplify with Next.js provides the web interface, and Amazon Cognito ensures secure access. Similar to Thingsboard and CoreIoT, users can register new devices and manage connections, though this platform operates on a smaller scale and is designed for private use. Key features include real-time dashboards, trend analysis, and low operational costs.
+**The Solution**
+The platform uses AWS CloudFormation for Infrastructure as Code (IaC) to provision secure VPC networks and Amazon RDS. Jenkins pipelines automate the CI/CD process, building and pushing Docker images to Amazon ECR, and deploying the Spring Boot backend to Amazon ECS Fargate. The React frontend is hosted on Amazon S3 and distributed via Amazon CloudFront. AWS WAF protects the Application Load Balancer and CloudFront distributions from common web exploits. Similar to enterprise-grade architectures, this project ensures zero-downtime deployments and robust security, tailored for academic demonstration.
 
-### Benefits and Return on Investment
-The solution establishes a foundational resource for lab members to develop a larger IoT platform, serving as a study resource, and provides a data foundation for AI enthusiasts for model training or analysis. It reduces manual reporting for each station via a centralized platform, simplifying management and maintenance, and improves data reliability. Monthly costs are $0.66 USD per the AWS Pricing Calculator, with a 12-month total of $7.92 USD. All IoT equipment costs are covered by the existing weather station setup, eliminating additional development expenses. The break-even period of 6-12 months is achieved through significant time savings from reduced manual work.
+**Benefits and Return on Investment**
+The solution establishes a foundational blueprint for engineers to understand and implement enterprise DevOps practices. It completely replaces manual deployment processes with automated Jenkins pipelines, saving significant time and reducing human error. Monthly infrastructure costs are heavily optimized to approximately $45.00 – $60.00 USD by utilizing ECS Fargate Spot and EventBridge Scheduler to power down environments during off-peak hours (saving ~37.5% runtime costs). The break-even value is achieved through immense time savings and the creation of a highly reusable CloudFormation template library.
 
 ### 3. Solution Architecture
-The platform employs a serverless AWS architecture to manage data from 5 Raspberry Pi-based stations, scalable to 15. Data is ingested via AWS IoT Core, stored in an S3 data lake, and processed by AWS Glue Crawlers and ETL jobs to transform and load it into another S3 bucket for analysis. Lambda and API Gateway handle additional processing, while Amplify with Next.js hosts the dashboard, secured by Cognito. The architecture is detailed below:
+The platform employs a serverless and containerized AWS architecture to manage user traffic and application logic. Data is stored in Amazon RDS for SQL Server, backend processing is handled by ECS Fargate, and the frontend is delivered via CloudFront. The architecture is detailed below:
 
-![IoT Weather Station Architecture](/images/2-Proposal/edge_architecture.jpeg)
 
-![IoT Weather Platform Architecture](/images/2-Proposal/platform_architecture.jpeg)
+#### 1. Main Request Flow (Data Flow)
 
-### AWS Services Used
-- **AWS IoT Core**: Ingests MQTT data from 5 stations, scalable to 15.
-- **AWS Lambda**: Processes data and triggers Glue jobs (two functions).
-- **Amazon API Gateway**: Facilitates web app communication.
-- **Amazon S3**: Stores raw data in a data lake and processed outputs (two buckets).
-- **AWS Glue**: Crawlers catalog data, and ETL jobs transform and load it.
-- **AWS Amplify**: Hosts the Next.js web interface.
-- **Amazon Cognito**: Secures access for lab users.
+```mermaid
+flowchart LR
+    %% DNS Resolution
+    User["👤 User"] -.->|"[1] DNS Resolution"| R53["Amazon Route 53"]
+    
+    %% Frontend Flow
+    User -->|"[2a] Web Access"| CF["CloudFront (w/ WAF)"]
+    CF -->|"OAC"| S3F["S3 Frontend (Private)"]
+    
+    %% API Flow
+    User -->|"[2] API Request"| IGW["Internet Gateway"]
+    IGW -->|"[3] Route Traffic"| ALB["ALB (w/ WAF)"]
+    
+    %% Backend Compute
+    ALB -->|"[4] Load Balance"| ECS1["ECS Fargate (AZ-1)"]
+    ALB -->|"[4] Load Balance"| ECS2["ECS Fargate (AZ-2)"]
+    
+    %% Secrets & DB
+    SSM["SSM Parameter Store"] -.->|"[5b] Fetch Config"| ECS1
+    SSM -.->|"[5b] Fetch Config"| ECS2
+    ECS1 -->|"[6] Read/Write Data"| RDS["RDS SQL Server"]
+    ECS2 -->|"[6] Read/Write Data"| RDS
+    
+    %% VPC Endpoint & NAT
+    ECS1 -->|"[7a] Upload Media"| VPCE["S3 VPC Endpoint"]
+    ECS2 -->|"[7a] Upload Media"| VPCE
+    VPCE --> S3M["S3 Media Storage"]
+    
+    %% Monitoring
+    ECS1 -->|"[8] Push Logs"| CW["CloudWatch"]
+    CW -->|"[9] Visualize"| Grafana["Grafana Cloud"]
+```
 
-### Component Design
-- **Edge Devices**: Raspberry Pi collects and filters sensor data, sending it to IoT Core.
-- **Data Ingestion**: AWS IoT Core receives MQTT messages from the edge devices.
-- **Data Storage**: Raw data is stored in an S3 data lake; processed data is stored in another S3 bucket.
-- **Data Processing**: AWS Glue Crawlers catalog the data, and ETL jobs transform it for analysis.
-- **Web Interface**: AWS Amplify hosts a Next.js app for real-time dashboards and analytics.
-- **User Management**: Amazon Cognito manages user access, allowing up to 5 active accounts.
+#### 2. CI/CD Pipeline Flow
+
+```mermaid
+flowchart LR
+    Dev["👨💻 Developer"] -->|"Git Push"| GH["GitHub"]
+    GH -->|"Trigger"| Jenkins["Jenkins Server"]
+    
+    %% Backend Deployment
+    Jenkins -->|"[A] Build & Push"| ECR["AWS ECR"]
+    Jenkins -->|"[B] Update Task"| ECS["ECS Fargate"]
+    ECR -.->|"Pull Image (via NAT)"| ECS
+    
+    %% Frontend Deployment
+    Jenkins -->|"[C] Sync static files"| S3["S3 Frontend"]
+    Jenkins -->|"[D] Invalidate Cache"| CF["CloudFront"]
+```
+
+![MiniSocial Architecture](/images/2-Proposal/Minisocial-Architect_final.png)
+
+**AWS Services Used**
+- **Amazon VPC & Networking:** Multi-AZ subnets, NAT Gateway, and S3 Gateway Endpoint for secure isolation.
+- **Amazon ECS Fargate:** Serverless container execution for backend application nodes.
+- **Amazon RDS for SQL Server:** Managed database service hosted in dedicated private subnets.
+- **Amazon S3 & CloudFront:** Secure frontend hosting via OAC and global content delivery.
+- **AWS WAF & ACM:** Enterprise-grade web application firewall protection and automated SSL/TLS certificates.
+- **Amazon Route 53:** Highly available DNS management.
+- **Amazon ECR & Jenkins:** Secure Docker registry and automated CI/CD pipelines.
+- **Amazon CloudWatch & EventBridge:** System logging, infrastructure metrics, and automated scheduling.
+- **AWS Systems Manager Parameter Store**: Secure storage and management of application configuration data and secrets.
+
+**Component Design**
+- **Frontend (Web Interface):** React application built with TypeScript, delivering the user interface through CloudFront.
+- **Backend (API Layer):** Spring Boot application running in Docker containers on ECS Fargate, handling business logic.
+- **Data Storage:** Amazon RDS for SQL Server serves as the primary relational database.
+- **CI/CD Pipeline:** Jenkins servers orchestrate the build, test, and deployment phases using declarative Jenkinsfiles.
+- **Security & Access:** AWS WAF inspects incoming traffic at the edge and at the ALB level to block malicious requests. 
 
 ### 4. Technical Implementation
-**Implementation Phases**
-This project has two parts—setting up weather edge stations and building the weather platform—each following 4 phases:
-- Build Theory and Draw Architecture: Research Raspberry Pi setup with ESP32 sensors and design the AWS serverless architecture (1 month pre-internship)
-- Calculate Price and Check Practicality: Use AWS Pricing Calculator to estimate costs and adjust if needed (Month 1).
-- Fix Architecture for Cost or Solution Fit: Tweak the design (e.g., optimize Lambda with Next.js) to stay cost-effective and usable (Month 2).
-- Develop, Test, and Deploy: Code the Raspberry Pi setup, AWS services with CDK/SDK, and Next.js app, then test and release to production (Months 2-3).
+**Implementation Phases** 
+This project is structured into 5 distinct phases to seamlessly build the infrastructure and automate the deployments:
+
+1. **Phase 1 – Foundation:** Provision networking resources (VPC, subnets, NAT Gateway) and Amazon RDS using AWS CloudFormation.
+2. **Phase 2 – CI/CD Setup:** Configure the Jenkins server, credentials, pipelines, and deployment environment.
+3. **Phase 3 – Backend Deployment & WAF:** Build Docker images, push to Amazon ECR, deploy Spring Boot to Amazon ECS Fargate, and secure the ALB with AWS WAF.
+4. **Phase 4 – Frontend Deployment & WAF:** Deploy the React application to Amazon S3, distribute via CloudFront, and configure AWS WAF.
+5. **Phase 5 – Monitoring & Optimization:** Collect logs and metrics using CloudWatch and Grafana Cloud, and load test the system.
 
 **Technical Requirements**
-- Weather Edge Station: Sensors (temperature, humidity, rainfall, wind speed), a microcontroller (ESP32), and a Raspberry Pi as the edge device. Raspberry Pi runs Raspbian, handles Docker for filtering, and sends 1 MB/day per station via MQTT over Wi-Fi.
-- Weather Platform: Practical knowledge of AWS Amplify (hosting Next.js), Lambda (minimal use due to Next.js), AWS Glue (ETL), S3 (two buckets), IoT Core (gateway and rules), and Cognito (5 users). Use AWS CDK/SDK to code interactions (e.g., IoT Core rules to S3). Next.js reduces Lambda workload for the fullstack web app.
+- **Infrastructure:** AWS account with administrative access to provision VPC, RDS, ECS, S3, CloudFront, WAF, and Route 53.
+- **DevOps Tools:** Local or cloud-hosted Jenkins server equipped with Docker, AWS CLI, Node.js, and Java environments.
+- **Automation:** Practical knowledge of AWS CloudFormation for IaC and Jenkins Pipeline scripts (Jenkinsfile) for continuous delivery.
 
 ### 5. Timeline & Milestones
 **Project Timeline**
-- Pre-Internship (Month 0): 1 month for planning and old station review.
-- Internship (Months 1-3): 3 months.
-    - Month 1: Study AWS and upgrade hardware.
-    - Month 2: Design and adjust architecture.
-    - Month 3: Implement, test, and launch.
-- Post-Launch: Up to 1 year for research.
+The project spans a total of 12 weeks, moving from local development to a fully automated cloud production release:
+
+- **Weeks 1-2:** Requirement analysis, system architecture design, and local Docker environment setup.
+- **10 weeks of active implementation:**
+  - **Weeks 3-5 (Development):** Build the core features (Authentication, Posts, Chat, Gamification) using Spring Boot and React.
+  - **Weeks 6-8 (Infrastructure & CI/CD):** Provision AWS foundation resources via CloudFormation and establish Jenkins automation.
+  - **Weeks 9-10 (Deployment):** Deploy the containerized backend to ECS Fargate and the frontend to S3/CloudFront.
+  - **Weeks 11-12 (Security & Launch):** Enforce AWS WAF rules, map Route 53 domains, integrate CloudWatch/Grafana, execute load tests, and go live.
+- **Post-Launch:** Continuous infrastructure cost optimization and system monitoring.
 
 ### 6. Budget Estimation
-You can find the budget estimation on the [AWS Pricing Calculator](https://calculator.aws/#/estimate?id=621f38b12a1ef026842ba2ddfe46ff936ed4ab01).  
-Or you can download the [Budget Estimation File](../attachments/budget_estimation.pdf).
-
-### Infrastructure Costs
-- AWS Services:
-    - AWS Lambda: $0.00/month (1,000 requests, 512 MB storage).
-    - S3 Standard: $0.15/month (6 GB, 2,100 requests, 1 GB scanned).
-    - Data Transfer: $0.02/month (1 GB inbound, 1 GB outbound).
-    - AWS Amplify: $0.35/month (256 MB, 500 ms requests).
-    - Amazon API Gateway: $0.01/month (2,000 requests).
-    - AWS Glue ETL Jobs: $0.02/month (2 DPUs).
-    - AWS Glue Crawlers: $0.07/month (1 crawler).
-    - MQTT (IoT Core): $0.08/month (5 devices, 45,000 messages).
-
-Total: $0.7/month, $8.40/12 months
-
-- Hardware: $265 one-time (Raspberry Pi 5 and sensors).
+**Infrastructure Costs**
+AWS Services (Estimated Monthly):
+- **Amazon ECS Fargate:** ~$15.00 – $20.00/month (15h/day operation).
+- **ECS Fargate Spot:** ~$3.00 – $5.00/month (Cost reduction auxiliary tasks).
+- **Amazon RDS (db.t3.small):** ~$10.00 – $15.00/month (15h/day operation).
+- **AWS NAT Gateway:** ~$5.00 – $8.00/month (Optimized via S3 Endpoint).
+- **Application Load Balancer & AWS WAF:** ~$10.00/month.
+- **Amazon S3, CloudFront, CloudWatch:** ~$2.00 – $4.00/month.
+- **Total Estimated:** ~$45.00 – $60.00 / month.
 
 ### 7. Risk Assessment
-#### Risk Matrix
-- Network Outages: Medium impact, medium probability.
-- Sensor Failures: High impact, low probability.
-- Cost Overruns: Medium impact, low probability.
+**Risk Matrix**
+- **Fargate Spot Reclamation:** Medium impact, medium probability.
+- **Budget Overruns:** High impact, low probability.
+- **Database Failure:** High impact, low probability.
 
-#### Mitigation Strategies
-- Network: Local storage on Raspberry Pi with Docker.
-- Sensors: Regular checks and spares.
-- Cost: AWS budget alerts and optimization.
+**Mitigation Strategies**
+- **Fargate Spot:** Maintain a minimum On-Demand base task (Base=1) that guarantees the primary node never drops.
+- **Budget:** Use AWS EventBridge Scheduler to strictly shut down compute environments at night (10:00 PM to 7:00 AM).
+- **Database:** Configure automated rolling backups and StorageEncrypted flags for RDS.
 
-#### Contingency Plans
-- Revert to manual methods if AWS fails.
-- Use CloudFormation for cost-related rollbacks.
+**Contingency Plans**
+- If cloud costs unexpectedly spike, trigger automated alarms to freeze non-essential staging nodes.
+- If Jenkins CI/CD fails, pipelines can be quickly migrated to GitHub Actions using the existing modular scripts.
 
 ### 8. Expected Outcomes
-#### Technical Improvements: 
-Real-time data and analytics replace manual processes.  
-Scalable to 10-15 stations.
-#### Long-term Value
-1-year data foundation for AI research.  
-Reusable for future projects.
+**Technical Improvements:**
+- Fully automated CI/CD pipelines replace manual deployment processes.
+- Enterprise-grade security via AWS WAF and private subnet isolation.
+
+**Long-term Value:**
+- A highly reusable, modular CloudFormation blueprint for future enterprise applications.
+- A robust training environment for engineers transitioning to AWS Cloud-Native architectures.

@@ -1,57 +1,43 @@
 ---
 title: "Week 9 Worklog"
-date: 2024-01-01
-weight: 1
+date: 2026-06-21
+weight: 9
 chapter: false
 pre: " <b> 1.9. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
 
+This week's worklog focuses on enhancing the user experience through frontend optimizations, implementing real-time full-stack features, and maintaining a robust CI/CD pipeline using Jenkins. We successfully integrated a dynamic chat system, an image cropper tool, and ensured seamless deployments to our AWS ECS infrastructure.
 
 ### Week 9 Objectives:
-
-* Connect and get acquainted with members of First Cloud AI Journey.
-* Understand basic AWS services, how to use the console & CLI.
+- Enhance User Experience (UX) through Frontend optimizations including navigation, real-time notifications, and media processing.
+- Implement robust Full-stack features to enable real-time message interactions and user search capabilities.
+- Maintain Continuous Integration and Continuous Deployment (CI/CD) by pushing code changes through the automated Jenkins pipeline to the AWS ECS infrastructure.
 
 ### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCAJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-
+| Day | Task | Start Date | Completion Date | Reference Material |
+| --- | --- | --- | --- | --- |
+| Day 1-7 (06/15 - 06/21) | - Frontend Development <br>&emsp; + Synchronize username navigation logic. <br>&emsp; + Refactor and improve the notification system. <br>&emsp; + Integrate an image cropper tool for user avatars. | 06/15/2026 | 06/21/2026 | Project Repo |
+| Day 1-7 (06/15 - 06/21) | - Full-stack Development <br>&emsp; + Implement real-time chat interactions. <br>&emsp; + Develop a dynamic user search functionality within the messaging module. | 06/15/2026 | 06/21/2026 | Project Repo |
 
 ### Week 9 Achievements:
+- Successfully shipped core social networking modules, significantly improving end-user interaction and media handling.
+- Demonstrated a mature Software Engineering lifecycle: managing branches, resolving merge conflicts, and writing clean commit messages.
+- Validated the stability of the DevOps CI/CD workflow: all new code commits were automatically built and deployed to the AWS Cloud environment without causing service downtime.
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+### Task Evidence:
 
-* Successfully created and configured an AWS Free Tier account.
+#### 1. Version Control & CI/CD Triggers
+Successfully managed the project's source code on GitHub. The commit history demonstrates active development of the messaging system, notification icons, and image cropping features. These commits seamlessly triggered the Jenkins pipeline to deploy the latest container images to AWS ECR and ECS.
+![GitHub Commits & PRs](/images/1-Worklog/Week9/GitHub_Sprint_Commits.png)
 
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
+#### 2. Real-time Chat & User Search
+Implemented the Full-stack messaging module. The UI successfully allows users to search for peers and interact in real-time, pulling active data from the backend database.
+![Chat and Search Feature](/images/1-Worklog/Week9/Project_Chat_Search.png)
 
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
+#### 3. Image Cropper Integration
+Enhanced the Frontend by integrating an image processing tool, allowing users to crop and adjust their avatars before uploading the media files to the Amazon S3 storage bucket.
+![Image Cropper UI](/images/1-Worklog/Week9/Project_ImageCroppe.png)
 
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+#### 4. Team Offline Meeting
+Conducted an offline team meeting to review the final system architecture, finalize presentation slides, and rehearse for the project defense.
+![Team Offline Meeting](/images/1-Worklog/Week9/1206_meeting_w9.jpg)

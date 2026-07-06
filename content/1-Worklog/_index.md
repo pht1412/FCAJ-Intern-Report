@@ -1,39 +1,49 @@
 ---
 title: "Worklog"
-date: 2024-01-01
+date: 2026-07-06
 weight: 1
 chapter: false
 pre: " <b> 1. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.
-{{% /notice %}}
+Welcome to the official **Worklog** for the project! This document serves as a comprehensive weekly diary detailing our team's 3-month (12-week) journey.
 
-**On this page**, you will need to introduce your worklog. **How** did you complete it? How many weeks did you take to complete the program? **What** did you do in those weeks?
+Throughout this internship program, we meticulously documented our progress, technical challenges, and team collaboration. Below is the summarized roadmap of our accomplishments over the first 11 weeks.
 
-Typically, and as a standard, a worklog is carried out over about 3 months (throughout the internship period) with weekly contents as follows:
+### Project Roadmap & Weekly Milestones
 
-**Week 1:** [Getting familiar with AWS and basic AWS services](1.1-week1/)
+**Week 1:** [AWS IAM & EC2 Foundations](1.1-Week1/)  
+Mastered AWS IAM principles (Users, Groups, Roles, Assume Role) and deployed initial EC2 instances to verify network connectivity.
 
-**Week 2:** [Doing task A...](1.2-week2/)
+**Week 2:** [Hybrid Network Architecture & Database Initialization](1.2-Week2/)  
+Configured an AWS Site-to-Site VPN, troubleshooted IAM permissions for EC2, and initialized a MariaDB database on Linux via SSH.
 
-**Week 3:** [Doing task B...](1.3-week3/)
+**Week 3:** [AWS CLI, Disaster Recovery & Jenkins CI/CD Setup](1.3-Week3/)  
+Automated disaster recovery using AWS Backup, configured Amazon Managed Grafana, and established a Jenkins CI/CD pipeline integrated with GitHub.
 
-**Week 4:** [Doing task C...](1.4-week4/)
+**Week 4:** [AWS Systems Manager, VPC Endpoints & ECS Fargate ClickOps](1.4-Week4/)  
+Managed EC2 fleets via Systems Manager, secured access via PrivateLink, and manually deployed the application backend to Amazon ECS Fargate (ClickOps). (Offline meeting May 15).
 
-**Week 5:** [Doing task D...](1.5-week5/)
+**Week 5:** [Infrastructure as Code, Serverless Workflows & ChatOps](1.5-Week5/)  
+Deployed infrastructure using AWS CDK, implemented serverless workflows (API Gateway, Lambda), and integrated Slack ChatOps.
 
-**Week 6:** [Doing task E...](1.6-week6/)
+**Week 6:** [AWS Security Services & CI/CD Pipeline for Containers](1.6-Week6/)  
+Enabled intelligent threat detection with GuardDuty, managed credentials via Secrets Manager, and fully automated container deployments to ECR/ECS. (Offline meeting May 29).
 
-**Week 7:** [Doing task G...](1.7-week7/)
+**Week 7:** [Automated Architecture Provisioning with CloudFormation & RDS](1.7-Week7/)  
+Transitioned to Infrastructure as Code by codifying the VPC network topology, secure Amazon RDS, and backend ECS deployments using CloudFormation. (Offline meeting June 04).
 
-**Week 8:** [Doing task H...](1.8-week8/)
+**Week 8:** [System Performance Testing & Bottleneck Analysis](1.8-Week8/)  
+Visualized the 3-Tier Architecture, conducted rigorous K6 Load Testing, and analyzed telemetry data to identify system bottlenecks.
 
-**Week 9:** [Doing task I...](1.9-week9/)
+**Week 9:** [Full-stack Application Enhancements & CI/CD Maintenance](1.9-Week9/)  
+Implemented full-stack user experience improvements and ensured zero-downtime deployments via the automated Jenkins CI/CD pipeline. (Offline meeting June 12).
 
-**Week 10:** [Doing task L...](1.10-week10/)
+**Week 10:** [Enterprise Architecture, FinOps & Custom Domain Setup](1.10-Week10/)  
+Upgraded to a Multi-AZ highly available infrastructure, implemented FinOps via EventBridge scheduling, and secured traffic with Route53 and ACM certificates. (Offline meeting June 19).
 
-**Week 11:** [Doing task M...](1.11-week11/)
+**Week 11:** [Advanced Load Testing & DDoS Simulation](1.11-Week11/)  
+Deployed the interactive Gacha feature, conducted rigorous K6 performance testing (5MB file uploads), and simulated Layer 7 HTTP flood attacks to gather baseline metrics. (Offline meeting July 03).
 
-**Week 12:** [Doing task N...](1.12-week12/)
+**Week 12:** [To be updated by user]  
+*(Final System Audit, AWS WAF Integration, and Project Handoff)*

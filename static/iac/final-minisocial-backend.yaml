@@ -1,0 +1,238 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Ha tang launch Spring Boot Backend len AWS ECS Fargate CHUAN ENTERPRISE (SSM Parameter Store, Private Subnet)'
+
+Parameters:
+  PrivateSubnetComputeId:
+    Type: AWS::EC2::Subnet::Id
+    Description: 'Chon ID cua MiniSocial-PrivateSubnet-Compute (Tu Stack 1)'
+
+  PrivateSubnetCompute2Id:  # 🟢 THÊM MỚI
+    Type: AWS::EC2::Subnet::Id
+    Description: 'ID cua MiniSocial-PrivateSubnet-Compute-AZ2 (Tu Stack 1)'
+
+  BackendSecurityGroupId:
+    Type: AWS::EC2::SecurityGroup::Id
+    Description: 'Chon ID cua MiniSocial-Backend-SG (Tu Stack 1)'
+
+  BackendTargetGroupArn:
+    Type: String
+    Description: 'Dan ARN cua MiniSocial-Backend-TG de ALB dieu huong traffic (Tu Stack 1)'
+
+  EcrImageUri:
+    Type: String
+    Description: 'Dan URL cua Docker Image tren ECR vao day (Tuong thich tag dong v${env.BUILD_NUMBER})'
+
+  RdsEndpoint:
+    Type: String
+    Description: 'Dan Endpoint Address cua RDS SQL Server vao day (Tu Stack 2)'
+
+  DbUser:
+    Type: String
+    Default: 'pht'
+    Description: 'Username dang nhap database'
+
+Resources:
+  # 1. TẠO CLOUDWATCH LOG GROUP
+  BackendLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /ecs/minisocial-backend
+      RetentionInDays: 7
+
+  # 2. TẠO IAM ROLE (Cấp quyền truy cập SSM Parameter Store)
+  ECSTaskExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: [ecs-tasks.amazonaws.com]
+            Action: ['sts:AssumeRole']
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy
+      Policies:
+        - PolicyName: ECSSecretAccessPolicy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - 'ssm:GetParameters'
+                Resource: 
+                  - !Sub "arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter/minisocial/backend/*"
+
+  # 3. TASK DEFINITION
+  BackendTaskDefinition:
+    Type: AWS::ECS::TaskDefinition
+    Properties:
+      Family: minisocial-backend-task
+      Cpu: '512'
+      Memory: '1024'
+      NetworkMode: awsvpc
+      RequiresCompatibilities:
+        - FARGATE
+      ExecutionRoleArn: !GetAtt ECSTaskExecutionRole.Arn
+      ContainerDefinitions:
+        - Name: minisocial-backend-container
+          Image: !Ref EcrImageUri
+          Cpu: 512
+          Memory: 1024
+          PortMappings:
+            - ContainerPort: 8080
+              Protocol: tcp
+          LogConfiguration:
+            LogDriver: awslogs
+            Options:
+              awslogs-group: !Ref BackendLogGroup
+              awslogs-region: !Ref 'AWS::Region'
+              awslogs-stream-prefix: ecs
+          
+          # 🟢 PHẦN SECRETS (BẢO MẬT TUYỆT ĐỐI)
+          Secrets:
+            - Name: SPRING_DATASOURCE_PASSWORD
+              ValueFrom: !Sub "arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter/minisocial/backend/db-password"
+            - Name: JWT_SECRET
+              ValueFrom: !Sub "arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter/minisocial/backend/jwt-secret"
+            - Name: SPRING_MAIL_PASSWORD
+              ValueFrom: !Sub "arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter/minisocial/backend/mail-password"
+            - Name: GRAFANA_OTLP_TOKEN
+              ValueFrom: !Sub "arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter/minisocial/backend/grafana-token"
+            - Name: AWS_ACCESS_KEY_ID
+              ValueFrom: !Sub "arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter/minisocial/backend/aws-access-key"
+            - Name: AWS_SECRET_ACCESS_KEY
+              ValueFrom: !Sub "arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter/minisocial/backend/aws-secret-key"
+
+          # 🔵 PHẦN ENVIRONMENT: Đã ánh xạ 100% với .env và application.properties
+          Environment:
+            # ========== Database Configuration ==========
+            - Name: SPRING_DATASOURCE_URL
+              Value: !Sub "jdbc:sqlserver://${RdsEndpoint}:1433;databaseName=MiniSocialDB;encrypt=true;trustServerCertificate=true;"
+            - Name: SPRING_DATASOURCE_USERNAME
+              Value: !Ref DbUser
+            - Name: SPRING_DATASOURCE_DRIVER_CLASS_NAME
+              Value: "com.microsoft.sqlserver.jdbc.SQLServerDriver"
+            - Name: SPRING_JPA_HIBERNATE_DDL_AUTO
+              Value: "update"
+            - Name: SPRING_JPA_SHOW_SQL
+              Value: "false"
+            - Name: SPRING_JPA_SEND_STRING_PARAMETERS_AS_UNICODE
+              Value: "true"
+            
+            # ========== Server & Swagger Configuration ==========
+            - Name: SERVER_SERVLET_ENCODING_CHARSET
+              Value: "UTF-8"
+            - Name: SERVER_SERVLET_ENCODING_FORCE
+              Value: "true"
+            - Name: SERVER_PORT
+              Value: "8080"
+            - Name: SWAGGER_UI_PATH
+              Value: "/swagger-ui.html"
+            - Name: SWAGGER_API_DOCS_PATH
+              Value: "/v3/api-docs"
+              
+            # ========== File Upload & S3 Configuration ==========
+            - Name: APP_UPLOAD_DIR
+              Value: "./uploads"
+            - Name: STORAGE_TYPE
+              Value: "s3"
+            - Name: SPRING_SERVLET_MULTIPART_MAX_FILE_SIZE
+              Value: "50MB"
+            - Name: SPRING_SERVLET_MULTIPART_MAX_REQUEST_SIZE
+              Value: "50MB"
+            - Name: AWS_REGION
+              Value: !Ref 'AWS::Region'
+            - Name: AWS_BUCKET_NAME
+              Value: "minisocial-uploads-254201323904-ap-southeast-1-an"
+              
+            # ========== JPA Configuration ==========
+            - Name: SPRING_JPA_DATABASE
+              Value: "sql_server"
+            - Name: SPRING_JPA_DATABASE_PLATFORM
+              Value: "org.hibernate.dialect.SQLServerDialect"
+
+            # ========== JWT Public Configs ==========
+            - Name: JWT_EXPIRATION
+              Value: "86400000"
+            - Name: JWT_REFRESH_EXPIRATION
+              Value: "604800000"
+
+            # ========== CORS Configuration ==========
+            - Name: CORS_ALLOWED_ORIGINS
+              Value: "https://minisocial-network.id.vn,http://localhost:5173,http://localhost:3000"
+
+            # ========== Email Public Configs ==========
+            - Name: SPRING_MAIL_HOST
+              Value: "smtp.gmail.com"
+            - Name: SPRING_MAIL_PORT
+              Value: "587"
+            - Name: SPRING_MAIL_USERNAME
+              Value: "offical.minisocialnetwork@gmail.com"
+            - Name: SPRING_MAIL_PROPERTIES_MAIL_SMTP_AUTH
+              Value: "true"
+            - Name: SPRING_MAIL_PROPERTIES_MAIL_SMTP_STARTTLS_ENABLE
+              Value: "true"
+
+# 4. KHỞI CHẠY DỊCH VỤ ECS SERVICE
+  BackendECSService:
+    Type: AWS::ECS::Service
+    DependsOn: BackendTaskDefinition
+    Properties:
+      ServiceName: MiniSocial-Backend-Service
+      Cluster: MiniSocial-Cluster
+      DesiredCount: 2
+
+      # 🟢 TỐI ƯU CHI PHÍ: Sử dụng chiến lược kết hợp Fargate Chuẩn và Fargate Spot
+      CapacityProviderStrategy:
+        - CapacityProvider: FARGATE
+          Base: 1       # Đảm bảo task đầu tiên luôn là bản chuẩn (On-demand) không bao giờ bị thu hồi
+          Weight: 1     # Tỉ lệ phân bổ
+        - CapacityProvider: FARGATE_SPOT
+          Weight: 1     # Task thứ 2 sẽ tự động rớt vào Spot để hưởng giá siêu rẻ
+
+      TaskDefinition: !Ref BackendTaskDefinition
+      NetworkConfiguration:
+        AwsvpcConfiguration:
+          Subnets:
+            - !Ref PrivateSubnetComputeId
+            - !Ref PrivateSubnetCompute2Id
+          SecurityGroups:
+            - !Ref BackendSecurityGroupId
+          AssignPublicIp: DISABLED
+      LoadBalancers:
+        - ContainerName: minisocial-backend-container
+          ContainerPort: 8080
+          TargetGroupArn: !Ref BackendTargetGroupArn
+
+  # =========================================================================
+  # TỐI ƯU CHI PHÍ: AUTO SCALING - HẸN GIỜ NGỦ ĐÔNG VÀ THỨC DẬY
+  # =========================================================================
+
+  # 5. ĐĂNG KÝ MỤC TIÊU CO GIÃN VÀ CÀI ĐẶT LỊCH TRÌNH BÊN TRONG
+  BackendScalableTarget:
+    Type: AWS::ApplicationAutoScaling::ScalableTarget
+    DependsOn: BackendECSService
+    Properties:
+      MaxCapacity: 2
+      MinCapacity: 0
+      ResourceId: "service/MiniSocial-Cluster/MiniSocial-Backend-Service"
+      ScalableDimension: ecs:service:DesiredCount
+      ServiceNamespace: ecs
+      
+      # 🟢 Lịch trình được lồng trực tiếp vào bên trong Target
+      ScheduledActions:
+        # LỊCH TRÌNH 1: NGỦ ĐÔNG (10:00 PM HÀNG NGÀY)
+        - ScheduledActionName: SleepAt10PM
+          Schedule: "cron(0 22 * * ? *)" 
+          Timezone: "Asia/Ho_Chi_Minh" 
+          ScalableTargetAction:
+            MinCapacity: 0
+            MaxCapacity: 0
+            
+        # LỊCH TRÌNH 2: THỨC DẬY (07:00 AM HÀNG NGÀY)
+        - ScheduledActionName: WakeUp7AM
+          Schedule: "cron(0 7 * * ? *)" 
+          Timezone: "Asia/Ho_Chi_Minh" 
+          ScalableTargetAction:
+            MinCapacity: 2
+            MaxCapacity: 2

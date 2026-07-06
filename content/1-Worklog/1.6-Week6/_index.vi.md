@@ -1,58 +1,58 @@
 ---
 title: "Worklog Tuần 6"
-date: 2024-01-01
-weight: 1
+date: 2026-05-19
+weight: 6
 chapter: false
 pre: " <b> 1.6. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
 
+Báo cáo tuần này trình bày việc triển khai hệ thống phát hiện mối đe dọa thông minh bằng Amazon GuardDuty và quản lý thông tin xác thực an toàn bằng AWS Secrets Manager. Đối với dự án nhóm, chúng tôi đã đạt được cột mốc quan trọng khi tự động hóa hoàn toàn việc triển khai ứng dụng container trên Amazon ECS Fargate, kết hợp quy trình kiểm thử tự động nghiêm ngặt để đảm bảo chất lượng.
 
-### Mục tiêu tuần 6:
+### Mục tiêu Tuần 6:
+- Triển khai hệ thống phát hiện mối đe dọa thông minh và giám sát liên tục với Amazon GuardDuty.
+- Quản lý an toàn và tiêm (inject) các thông tin xác thực nhạy cảm (mật khẩu database) bằng AWS Secrets Manager.
+- Tự động hóa quá trình triển khai ứng dụng container hóa sử dụng AWS CloudFormation, Amazon ECR, và Amazon ECS Fargate.
+- **Dự án nhóm:** Thực hiện kiểm thử thủ công và tự động toàn diện cho các tính năng mới của ứng dụng nhằm đảm bảo chất lượng mã nguồn và tính ổn định của hệ thống.
 
-* Kết nối, làm quen với các thành viên trong First Cloud AI Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+### Các công việc thực hiện trong tuần:
+| Ngày | Công việc | Ngày bắt đầu | Ngày hoàn thành | Tài liệu tham khảo |
+| --- | --- | --- | --- | --- |
+| Ngày 1 (19/05) | - Phiên 1: Phát hiện mối đe dọa (Threat Detection) <br>&emsp; + Triển khai stack `GuardDuty-Hands-On` qua CloudFormation. <br>&emsp; + Phân tích các phát hiện bảo mật (Findings) và kiểm tra bảng điều khiển Summary của GuardDuty. | 05/19/2026 | 05/19/2026 | [AWS GuardDuty Docs](https://docs.aws.amazon.com/guardduty/) |
+| Ngày 1 (19/05) | - Phiên 2: Quản lý Secret & Triển khai ECS <br>&emsp; + Tải tệp `RDSFargate.yml` lên Amazon S3. <br>&emsp; + Khởi tạo `dbsecret` trong AWS Secrets Manager để lưu thông tin đăng nhập CSDL. <br>&emsp; + Khởi chạy 4 CloudFormation stacks (gồm 3 stack `SecretManagerRDS` và 1 stack `smdemo`). <br>&emsp; + Tạo kho lưu trữ Amazon ECR với tên `smdemo`. <br>&emsp; + Build và push Docker image của ứng dụng lên ECR thông qua Terminal. <br>&emsp; + Dựng ECS Cluster `smdemo` và cấu hình 2 Fargate Task Definitions. | 05/19/2026 | 05/19/2026 | [AWS Secrets Manager & ECS Docs](https://docs.aws.amazon.com/ecs/) |
+| Ngày 2 (20/05) | - **Dự án nhóm:** Kiểm thử phần mềm (QA/QC) <br>&emsp; + Thực hiện kiểm thử thủ công (manual test) các tính năng mới. <br>&emsp; + Viết và chạy kịch bản kiểm thử tự động (automation test) cho backend. <br>&emsp; + Xuất và phân tích báo cáo độ bao phủ mã (Code Coverage) bằng JaCoCo. | 05/20/2026 | 05/20/2026 | Project Repo / JaCoCo Docs |
 
-### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCAJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
+### Thành tựu Tuần 6:
+- Kích hoạt thành công Amazon GuardDuty để nhận diện và phân tích các mối đe dọa bảo mật giả lập trong môi trường AWS.
+- Loại bỏ rủi ro lộ lọt thông tin bằng cách lưu trữ và quản lý hoàn toàn mật khẩu CSDL thông qua AWS Secrets Manager.
+- Xây dựng thành công luồng làm việc cho ứng dụng container: từ việc đóng gói Docker image, lưu trữ trên ECR, đến việc triển khai vận hành tự động trên Amazon ECS Fargate bằng Infrastructure as Code.
+- Kiểm chứng thành công các tính năng mới thông qua quy trình kiểm thử tự động và thủ công nghiêm ngặt, đạt tỷ lệ bao phủ mã (code coverage) xuất sắc (~99%) được xác nhận bởi báo cáo JaCoCo.
 
+### Minh chứng thực hiện:
 
-### Kết quả đạt được tuần 6:
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+#### 1. Phát hiện mối đe dọa với Amazon GuardDuty
+Triển khai hạ tầng cơ sở và xác nhận hệ thống GuardDuty đã phát sinh các cảnh báo bảo mật (Findings) thành công.
+![GuardDuty Findings](/images/1-Worklog/Week6/GuardDuty_Findings.png)
 
-* Đã tạo và cấu hình AWS Free Tier account thành công.
+#### 2. Cấu hình AWS Secrets Manager
+Khởi tạo và lưu trữ an toàn khóa `dbsecret` để sẵn sàng cung cấp thông tin đăng nhập cho ứng dụng container.
+![AWS Secrets Manager](/images/1-Worklog/Week6/Secrets_Manager_dbsecret.png)
 
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
+#### 3. Triển khai Hạ tầng (IaC) qua CloudFormation
+Sử dụng các stack lồng nhau để thiết lập thành công hệ thống cơ sở dữ liệu quan hệ và cụm ECS.
+![CloudFormation Stacks](/images/1-Worklog/Week6/CloudFormation_Stacks.png)
 
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
+#### 4. Amazon ECR & Đẩy Docker Image
+Tạo kho lưu trữ `smdemo`, thực hiện xác thực, build và đẩy thành công Docker image lên ECR thông qua giao diện dòng lệnh.
+![ECR Docker Push](/images/1-Worklog/Week6/ECR_Docker_Push.png)
 
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
+#### 5. Cấu hình Amazon ECS Fargate Task Definitions
+Triển khai ECS Cluster và xác nhận 2 Task Definitions cho ứng dụng `smdemo` đã được tạo và đăng ký thành công.
+![ECS Task Definitions](/images/1-Worklog/Week6/ECS_Task_Definitions.png)
 
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
+#### 6. Dự án nhóm: Kiểm thử tự động & Báo cáo bao phủ mã (Ngày 20/05)
+Thực thi các bài kiểm thử đơn vị (Unit Tests) tự động cho dịch vụ backend và xuất báo cáo bằng công cụ JaCoCo. Kết quả cho thấy tỷ lệ bao phủ mã (Code Coverage) đạt mức rất cao (lên đến 99% cho các module cốt lõi), đảm bảo ứng dụng hoạt động ổn định và hạn chế tối đa lỗi phát sinh ở các tính năng mới.
+![JaCoCo Code Coverage](/images/1-Worklog/Week6/Project_JaCoCo_Coverage.png)
 
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
-
+#### 7. Họp nhóm trực tiếp
+Thực hiện họp nhóm trực tiếp để đánh giá quá trình tự động hóa luồng CI/CD và đảm bảo các tiêu chuẩn chất lượng mã nguồn trước lần triển khai cuối cùng.
+![Họp nhóm trực tiếp](/images/1-Worklog/Week6/2905_meeting_w6.jpg)
