@@ -8,7 +8,7 @@ pre: " <b> 1. </b> "
 
 Chào mừng bạn đến với **Nhật ký công việc (Worklog)**! Tài liệu này là một cuốn nhật ký ghi chép lại toàn bộ hành trình 3 tháng (12 tuần) thực tập của nhóm.
 
-Trong suốt chương trình thực tập này, nhóm đã ghi chép lại một cách tỉ mỉ tiến độ công việc, các thách thức kỹ thuật và sự phối hợp nhịp nhàng giữa các thành viên. Dưới đây là lộ trình tổng quan về những thành tựu nhóm đã đạt được trong 11 tuần qua.
+Trong suốt chương trình thực tập này, nhóm đã ghi chép lại một cách tỉ mỉ tiến độ công việc, các thách thức kỹ thuật và sự phối hợp nhịp nhàng giữa các thành viên. Dưới đây là lộ trình tổng quan về những thành tựu nhóm đã đạt được trong 12 tuần qua.
 
 ### Lộ trình dự án & Cột mốc hàng tuần
 
@@ -45,5 +45,5 @@ Nâng cấp hạ tầng lên Multi-AZ (HA), ứng dụng FinOps bằng EventBrid
 **Tuần 11:** [Kiểm thử Chịu tải Nâng cao & Giả lập Tấn công DDoS](1.11-Week11/)  
 Triển khai tính năng Gacha, kiểm thử khắt khe K6 với luồng tải tệp 5MB và giả lập tấn công HTTP Flood Layer 7 để lấy baseline cho WAF. (Họp nhóm offline 03/07).
 
-**Tuần 12:** [Sẽ được cập nhật sau]  
-*(Kiểm toán an ninh hệ thống, Tích hợp AWS WAF và Bàn giao dự án)*
+**Tuần 12:** [Báo cáo Kiểm thử JaCoCo & Tổng hợp Internal Report](1.12-Week12/)  
+Xây dựng báo cáo kiểm thử phần mềm bằng JaCoCo (Code Coverage) với kiểm thử 2 tầng Controller (MockMvc) và Service (Mockito), đồng thời tổng hợp toàn bộ nội dung để hoàn thiện Internal Report trên Hugo.

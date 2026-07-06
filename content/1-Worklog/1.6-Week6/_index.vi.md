@@ -51,7 +51,7 @@ Triển khai ECS Cluster và xác nhận 2 Task Definitions cho ứng dụng `sm
 
 #### 6. Dự án nhóm: Kiểm thử tự động & Báo cáo bao phủ mã (Ngày 20/05)
 Thực thi các bài kiểm thử đơn vị (Unit Tests) tự động cho dịch vụ backend và xuất báo cáo bằng công cụ JaCoCo. Kết quả cho thấy tỷ lệ bao phủ mã (Code Coverage) đạt mức rất cao (lên đến 99% cho các module cốt lõi), đảm bảo ứng dụng hoạt động ổn định và hạn chế tối đa lỗi phát sinh ở các tính năng mới.
-![JaCoCo Code Coverage](/images/1-Worklog/Week6/Project_JaCoCo_Coverage.png)
+![JaCoCo Code Coverage](/images/1-Worklog/Week6/Project_JaCoCo_Coverage_W6.png)
 
 #### 7. Họp nhóm trực tiếp
 Thực hiện họp nhóm trực tiếp để đánh giá quá trình tự động hóa luồng CI/CD và đảm bảo các tiêu chuẩn chất lượng mã nguồn trước lần triển khai cuối cùng.

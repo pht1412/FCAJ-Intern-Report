@@ -8,7 +8,7 @@ pre: " <b> 1. </b> "
 
 Welcome to the official **Worklog** for the project! This document serves as a comprehensive weekly diary detailing our team's 3-month (12-week) journey.
 
-Throughout this internship program, we meticulously documented our progress, technical challenges, and team collaboration. Below is the summarized roadmap of our accomplishments over the first 11 weeks.
+Throughout this internship program, we meticulously documented our progress, technical challenges, and team collaboration. Below is the summarized roadmap of our accomplishments over the full 12 weeks.
 
 ### Project Roadmap & Weekly Milestones
 
@@ -45,5 +45,5 @@ Upgraded to a Multi-AZ highly available infrastructure, implemented FinOps via E
 **Week 11:** [Advanced Load Testing & DDoS Simulation](1.11-Week11/)  
 Deployed the interactive Gacha feature, conducted rigorous K6 performance testing (5MB file uploads), and simulated Layer 7 HTTP flood attacks to gather baseline metrics. (Offline meeting July 03).
 
-**Week 12:** [To be updated by user]  
-*(Final System Audit, AWS WAF Integration, and Project Handoff)*
+**Week 12:** [JaCoCo Testing Report & Internal Report Consolidation](1.12-Week12/)  
+Built a software testing report using JaCoCo for Code Coverage measurement across two layers — Controller (MockMvc) and Service (Mockito) — and consolidated all content into a complete Internal Report on Hugo.

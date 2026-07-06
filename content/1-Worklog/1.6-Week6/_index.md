@@ -51,7 +51,7 @@ Deployed the ECS Cluster and verified the successful creation and registration o
 
 #### 6. Team Project: Automated Testing & Code Coverage (May 20)
 Executed comprehensive automated unit tests for the backend services and generated detailed code coverage reports using JaCoCo. The results demonstrated excellent test coverage (up to 99% instruction coverage) across core modules, ensuring the robust reliability of newly implemented features.
-![JaCoCo Code Coverage](/images/1-Worklog/Week6/Project_JaCoCo_Coverage.png)
+![JaCoCo Code Coverage](/images/1-Worklog/Week6/Project_JaCoCo_Coverage_W6.png)
 
 #### 7. Team Offline Meeting
 Conducted an offline team meeting to review the CI/CD pipeline automation and ensure code quality standards before the final project release.

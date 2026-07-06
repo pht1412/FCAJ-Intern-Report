@@ -6,7 +6,7 @@ chapter: false
 pre: " <b> 4.1. </b> "
 ---
 
-# Event Report: “FCAJ Community Day MAY 2026”
+# Summary Report: “FCAJ Community Day - MAY 2026”
 
 ![FCAJ Community Day Poster](/images/4-EventParticipated/Evt_1.jpg)
 
