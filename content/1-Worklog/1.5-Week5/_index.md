@@ -26,7 +26,7 @@ This week's worklog covers infrastructure automation with AWS CDK, serverless wo
 | Day 4  | - Session 1: Security & Auditing <br>&emsp; + Host static web on S3. <br>&emsp; + Restrict S3 access using Custom KMS Keys and verify (Access Denied). <br>&emsp; + Audit activities using AWS CloudTrail. | 05/14/2026 | 05/14/2026 | [AWS KMS & CloudTrail](https://cloudjourney.awsstudygroup.com/) |
 | Day 4  | - Session 2: Automation & ChatOps <br>&emsp; + Create EventBridge scheduled rules. <br>&emsp; + Trigger Lambda functions to manage EC2 and send alerts to Slack. | 05/14/2026 | 05/14/2026 | [AWS EventBridge & Lambda](https://cloudjourney.awsstudygroup.com/) |
 | Day 4  | - Session 3: Directory Service <br>&emsp; + Provision VPC, AD-Manager, and Bastion Host. <br>&emsp; + Configure AWS Directory Service and verify connectivity via RDP (Ping). | 05/14/2026 | 05/14/2026 | [AWS Directory Service](https://cloudjourney.awsstudygroup.com/) |
-| Day 5  | - **Team Project:** Feature Development <br>&emsp; + Implement Dark Mode UI toggle. <br>&emsp; + Develop Security History dashboard to track login sessions. <br>&emsp; + Build Anonymous Commenting functionality. | 05/15/2026 | 05/15/2026 | Project Repo |
+| Day 5  | - **Team Project:** Feature Development <br>&emsp; + Implement Dark Mode UI toggle. <br>&emsp; + Develop Security History dashboard to track login sessions. <br>&emsp; + Build Anonymous Commenting functionality. | 05/15/2026 | 05/15/2026 | [Project Repository](https://github.com/pht1412/Mini-Social-Network.git) |
 
 ### Week 5 Achievements:
 - Successfully deployed complex infrastructure using AWS CDK.

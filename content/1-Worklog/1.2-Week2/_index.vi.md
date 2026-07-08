@@ -18,12 +18,12 @@ Báo cáo tuần này tập trung vào việc thiết lập kiến trúc mạng 
 ### Các công việc thực hiện trong tuần:
 | Ngày | Công việc | Ngày bắt đầu | Ngày hoàn thành | Tài liệu tham khảo |
 | --- | --- | --- | --- | --- |
-| Ngày 1  | - Thiết lập Site-to-Site VPN <br>&emsp; + Khởi tạo VPC, Subnets, IGW, NAT, VGW, và CGW. <br>&emsp; + Tạo kết nối VPN và cấu hình router đầu cuối qua giao diện dòng lệnh. | 04/25/2026 | 04/25/2026 | AWS VPN Documentation |
-| Ngày 1  | - Kiểm thử kết nối VPN <br>&emsp; + Xác nhận 2 đường hầm IPsec ở trạng thái UP và thực hiện thành công lệnh ping xuyên mạng. | 04/25/2026 | 04/25/2026 | AWS VPC Routing |
-| Ngày 2  | - Cấu hình IAM & Khởi tạo EC2 <br>&emsp; + Tạo nhóm IAM `CostTest`, gán user, tạo IAM Role `Windows-instance`. <br>&emsp; + Khởi tạo hàng loạt EC2 và ổ cứng EBS. | 04/28/2026 | 04/28/2026 | [AWS EC2 & IAM Docs](https://cloudjourney.awsstudygroup.com/) |
-| Ngày 2  | - Xử lý sự cố Phân quyền IAM <br>&emsp; + Phân tích lỗi khởi tạo EC2 thất bại do bị chặn bởi chính sách IAM. <br>&emsp; + Kiểm thử quyền truy cập S3 bucket (Access Denied). | 04/28/2026 | 04/28/2026 | [AWS IAM Troubleshooting](https://cloudjourney.awsstudygroup.com/) |
-| Ngày 2  | - Cấu hình OS & Cơ sở dữ liệu <br>&emsp; + Truy cập Windows Server qua RDP và Linux qua SSH (MobaXterm). <br>&emsp; + Chạy lệnh khởi tạo bảo mật cho MariaDB. | 04/28/2026 | 04/28/2026 | [MariaDB Docs](https://cloudjourney.awsstudygroup.com/) |
-| Ngày 2  | - **Dự án nhóm:** Nghiên cứu CI/CD (Jenkins) <br>&emsp; + Tìm hiểu kiến trúc Jenkins và cách tích hợp với GitHub. <br>&emsp; + Xác định các yêu cầu hệ thống để triển khai pipeline tự động. | 04/28/2026 | 04/28/2026 | Jenkins Official Docs |
+| Ngày 1  | - Thiết lập Site-to-Site VPN <br>&emsp; + Khởi tạo VPC, Subnets, IGW, NAT, VGW, và CGW. <br>&emsp; + Tạo kết nối VPN và cấu hình router đầu cuối qua giao diện dòng lệnh. | 25/04/2026 | 25/04/2026 | [AWS VPN Documentation](https://cloudjourney.awsstudygroup.com/) |
+| Ngày 1  | - Kiểm thử kết nối VPN <br>&emsp; + Xác nhận 2 đường hầm IPsec ở trạng thái UP và thực hiện thành công lệnh ping xuyên mạng. | 25/04/2026 | 25/04/2026 | [AWS VPC Routing](https://cloudjourney.awsstudygroup.com/) |
+| Ngày 2  | - Cấu hình IAM & Khởi tạo EC2 <br>&emsp; + Tạo nhóm IAM `CostTest`, gán user, tạo IAM Role `Windows-instance`. <br>&emsp; + Khởi tạo hàng loạt EC2 và ổ cứng EBS. | 28/04/2026 | 28/04/2026 | [AWS EC2 & IAM Docs](https://cloudjourney.awsstudygroup.com/) |
+| Ngày 2  | - Xử lý sự cố Phân quyền IAM <br>&emsp; + Phân tích lỗi khởi tạo EC2 thất bại do bị chặn bởi chính sách IAM. <br>&emsp; + Kiểm thử quyền truy cập S3 bucket (Access Denied). | 28/04/2026 | 28/04/2026 | [AWS IAM Troubleshooting](https://cloudjourney.awsstudygroup.com/) |
+| Ngày 2  | - Cấu hình OS & Cơ sở dữ liệu <br>&emsp; + Truy cập Windows Server qua RDP và Linux qua SSH (MobaXterm). <br>&emsp; + Chạy lệnh khởi tạo bảo mật cho MariaDB. | 28/04/2026 | 28/04/2026 | [MariaDB Docs](https://cloudjourney.awsstudygroup.com/) |
+| Ngày 2  | - **Dự án nhóm:** Nghiên cứu CI/CD (Jenkins) <br>&emsp; + Tìm hiểu kiến trúc Jenkins và cách tích hợp với GitHub. <br>&emsp; + Xác định các yêu cầu hệ thống để triển khai pipeline tự động. | 28/04/2026 | 28/04/2026 | Jenkins Official Docs |
 
 ### Thành tựu Tuần 2:
 - Thiết lập và kiểm thử thành công hệ thống mạng bảo mật Site-to-Site VPN.

@@ -6,7 +6,7 @@ chapter: false
 pre: " <b> 7. </b> "
 ---
 
-> Tại đây, tôi xin tự do đóng góp ý kiến cá nhân và nhìn lại toàn bộ trải nghiệm khi tham gia chương trình thực tập Bootcamp của **FirstCloudAIJourney (FCAJ)**. Những đánh giá dưới đây được đúc kết từ góc nhìn thực tiễn của một người đảm nhận vai trò Team Leader của một nhóm đa chuyên môn (Dev, Security, Network).
+> Tại đây, tôi xin tự do đóng góp ý kiến cá nhân và nhìn lại toàn bộ trải nghiệm khi tham gia chương trình thực tập của **Bootcamp First Cloud AI Journey (FCAJ)**. Những đánh giá dưới đây được đúc kết từ góc nhìn thực tiễn của một người đảm nhận vai trò Team Leader của một nhóm đa chuyên môn (Dev, Security, Network).
 
 ### Đánh giá chung
 

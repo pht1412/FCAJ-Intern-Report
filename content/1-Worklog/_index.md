@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 1. </b> "
 ---
 
-Welcome to the official **Worklog** for the project! This document serves as a comprehensive weekly diary detailing our team's 3-month (12-week) journey.
 
 Throughout this internship program, we meticulously documented our progress, technical challenges, and team collaboration. Below is the summarized roadmap of our accomplishments over the full 12 weeks.
 

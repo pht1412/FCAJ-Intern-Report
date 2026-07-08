@@ -17,8 +17,8 @@ This week's worklog focuses on refining our 3-Tier Cloud Architecture diagram an
 ### Tasks to be carried out this week:
 | Day | Task | Start Date | Completion Date | Reference Material |
 | --- | --- | --- | --- | --- |
-| Day 1 (06/08) | - Architecture Design & Community Sharing <br>&emsp; + Finalize the system architecture diagram. <br>&emsp; + Publish Project Blog #1 on the AWS Study Group VN community. | 06/08/2026 | 06/08/2026 | Project Architect |
-| Day 7 (06/14) | - Performance Engineering (Load Testing) <br>&emsp; + Prepare K6 scripts simulating 500 concurrent users. <br>&emsp; + Execute load tests on Local vs. AWS Cloud environments. <br>&emsp; + Compile the System Capacity & Bottleneck Analysis Report. | 06/14/2026 | 06/14/2026 | K6 Documentation |
+| Day 1 | - Architecture Design & Community Sharing <br>&emsp; + Finalize the system architecture diagram. <br>&emsp; + Publish Project Blog #1 on the AWS Study Group VN community. | 06/08/2026 | 06/08/2026 | Project Architect |
+| Day 7 | - Performance Engineering (Load Testing) <br>&emsp; + Prepare K6 scripts simulating 500 concurrent users. <br>&emsp; + Execute load tests on Local vs. AWS Cloud environments. <br>&emsp; + Compile the System Capacity & Bottleneck Analysis Report. | 06/14/2026 | 06/14/2026 | K6 Documentation |
 
 ### Week 8 Achievements:
 - Successfully visualized the application's infrastructure mapping on AWS and contributed to the engineering community.

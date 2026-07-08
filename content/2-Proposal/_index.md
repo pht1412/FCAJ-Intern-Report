@@ -3,7 +3,7 @@ title: "Proposal"
 date: 2026-07-01
 weight: 2
 chapter: false
-pre: "  2.  "
+pre: " <b> 2. </b> "
 ---
 
 # Mini Social Network

@@ -16,8 +16,8 @@ This week's worklog focuses on enhancing the user experience through frontend op
 ### Tasks to be carried out this week:
 | Day | Task | Start Date | Completion Date | Reference Material |
 | --- | --- | --- | --- | --- |
-| Day 1-7 (06/15 - 06/21) | - Frontend Development <br>&emsp; + Synchronize username navigation logic. <br>&emsp; + Refactor and improve the notification system. <br>&emsp; + Integrate an image cropper tool for user avatars. | 06/15/2026 | 06/21/2026 | Project Repo |
-| Day 1-7 (06/15 - 06/21) | - Full-stack Development <br>&emsp; + Implement real-time chat interactions. <br>&emsp; + Develop a dynamic user search functionality within the messaging module. | 06/15/2026 | 06/21/2026 | Project Repo |
+| Day 1-4 | - Frontend Development <br>&emsp; + Synchronize username navigation logic. <br>&emsp; + Refactor and improve the notification system. <br>&emsp; + Integrate an image cropper tool for user avatars. | 06/15/2026 | 06/18/2026 | [Project Repository](https://github.com/pht1412/Mini-Social-Network.git) |
+| Day 5-7 | - Full-stack Development <br>&emsp; + Implement real-time chat interactions. <br>&emsp; + Develop a dynamic user search functionality within the messaging module. | 06/19/2026 | 06/21/2026 | [Project Repository](https://github.com/pht1412/Mini-Social-Network.git) |
 
 ### Week 9 Achievements:
 - Successfully shipped core social networking modules, significantly improving end-user interaction and media handling.

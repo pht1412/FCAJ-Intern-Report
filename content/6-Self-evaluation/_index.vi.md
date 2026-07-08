@@ -6,13 +6,10 @@ chapter: false
 pre: " <b> 6. </b> "
 ---
 
-<!-- {{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}} -->
 
-Trong suốt thời gian thực tập tại chương trình Bootcamp của **AWS Study Group VN / FirstCloudAIJourney** từ **12/04/2026** đến **12/07/2026**, tôi đã có cơ hội rèn luyện năng lực chuyên môn và khẳng định bản thân trong môi trường làm việc thực tế với áp lực cao. 
+Trong suốt thời gian thực tập tại chương trình **Bootcamp First Cloud AI Journey (FCAJ)** từ **15/04/2026** đến **15/07/2026**, tôi đã có cơ hội rèn luyện năng lực chuyên môn và khẳng định bản thân trong môi trường làm việc thực tế với áp lực cao. 
 
-Trong dự án "Mini Social Network", tôi đảm nhận vai trò **Nhóm trưởng (Team Leader)**, dẫn dắt một đội ngũ đa chuyên môn gồm 5 thành viên (2 Developer, 1 Security, 2 Network). Công việc của tôi trải dài từ khâu quản trị đến thực chiến kỹ thuật, cụ thể:
+Trong dự án "Mini Social Network", tôi đảm nhận vai trò **Nhóm trưởng (Team Leader)**, dẫn dắt một đội ngũ đa chuyên môn gồm 5 thành viên (2 sinh viên thuộc chuyên ngành Công nghệ phần mềm, 1 sinh viên thuộc ngành An toàn thông tin, 2 thành viên thuộc chuyên ngành Mạng máy tính). Công việc của tôi trải dài từ khâu quản trị đến thực chiến kỹ thuật, cụ thể:
 *   Phân tích bài toán, bóc tách các đầu việc chuyên sâu và phân bổ chéo cho đúng chuyên môn của từng thành viên. 
 *   Chủ trì các buổi họp báo cáo tiến độ hàng tuần và đồng bộ hóa luồng công việc của toàn đội.
 *   Trực tiếp tham gia vẽ sơ đồ kiến trúc hệ thống, cấu hình luồng CI/CD cho cả Frontend và Backend.

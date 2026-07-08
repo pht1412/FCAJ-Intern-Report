@@ -10,7 +10,6 @@ pre: " <b> 4. </b> "
 > 
 > Participating in these events not only broadened my knowledge of Cloud & AI and kept me updated with the latest technological trends from industry experts, but also provided opportunities to hone system design thinking and gain practical experience through competitions.
 
-During the internship, I participated in 3 major events. Each event was a memorable experience filled with fresh, valuable knowledge, along with practical gifts and thrilling competitive moments.
 
 ### [Event 1: FCAJ Community Day (May 2026)](4.1-Event1/)
 &emsp;**Event Name:** FCAJ Community Day

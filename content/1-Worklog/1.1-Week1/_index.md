@@ -24,7 +24,7 @@ This week's worklog covers the foundational setup for our AWS environment, focus
 | Day 1 | - Add AdminUser to AdminGroup <br>&emsp; + Attach the created user to the admin group to inherit policies like `AdministratorAccess`. | 04/23/2026 | 04/23/2026 | [AWS IAM Documentation](https://cloudjourney.awsstudygroup.com/) |
 | Day 1 | - Check AdminUser on AdminGroup and Switch Role <br>&emsp; + Verify group membership and perform a Switch Role action from `OperatorUser` to `AdminRole` in the console. | 04/23/2026 | 04/23/2026 | [AWS IAM Documentation](https://cloudjourney.awsstudygroup.com/) |
 | Day 2 | - Provision EC2 Instances & Test Connectivity <br>&emsp; + Deploy EC2 instances in private subnets and use the `ping` command to verify internal network communication. | 04/24/2026 | 04/24/2026 | [AWS EC2 & VPC Documentation](https://cloudjourney.awsstudygroup.com/) |
-| Day 2 | - **Team Project:** Security Audit & Testing <br>&emsp; + Perform manual functional testing. <br>&emsp; + Compile `security_audit.log` by simulating web attacks via ngrok. <br>&emsp; + Synthesize functional and security vulnerabilities. | 04/24/2026 | 04/24/2026 | Project Repo |
+| Day 2 | - **Team Project:** Security Audit & Testing <br>&emsp; + Perform manual functional testing. <br>&emsp; + Compile `security_audit.log` by simulating web attacks via ngrok. <br>&emsp; + Synthesize functional and security vulnerabilities. | 04/24/2026 | 04/24/2026 | [Project Repository](https://github.com/pht1412/Mini-Social-Network.git) |
 
 ### Week 1 Achievements:
 - Mastered how to manage IAM on the AWS Management Console.

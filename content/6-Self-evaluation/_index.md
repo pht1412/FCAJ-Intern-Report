@@ -6,11 +6,8 @@ chapter: false
 pre: " <b> 6. </b> "
 ---
 
-<!-- {{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}} -->
 
-During my internship at the **AWS Study Group VN / FirstCloudAIJourney** Bootcamp from **April 12, 2026** to **July 12, 2026**, I had the invaluable opportunity to hone my professional skills and prove myself in a high-pressure, real-world working environment.
+During my internship at the **AWS Study Group VN / FirstCloudAIJourney** Bootcamp from **April 15, 2026** to **July 15, 2026**, I had the invaluable opportunity to hone my professional skills and prove myself in a high-pressure, real-world working environment.
 
 In the "Mini Social Network" project, I took on the role of **Team Leader**, guiding a cross-functional team of 5 members (2 Developers, 1 Security Engineer, 2 Network Engineers). My responsibilities ranged from project management to hands-on technical execution, specifically:
 *   Analyzing the project scope, breaking down complex tasks, and delegating them according to each member's specialized domain.

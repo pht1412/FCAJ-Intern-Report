@@ -20,13 +20,13 @@ Báo cáo tuần này trình bày việc tự động hóa hạ tầng thông qu
 ### Các công việc thực hiện trong tuần:
 | Ngày | Công việc | Ngày bắt đầu | Ngày hoàn thành | Tài liệu tham khảo |
 | --- | --- | --- | --- | --- |
-| Ngày 1 (11/05) | - IaC & Serverless API <br>&emsp; + Khởi chạy CloudFormation qua AWS CDK. <br>&emsp; + Gọi API Gateway tải ảnh lên S3. | 05/11/2026 | 05/11/2026 | [AWS CDK & API Docs](https://cloudjourney.awsstudygroup.com/) |
-| Ngày 2 (12/05) | - Quản lý IAM & Chi phí <br>&emsp; + Phân quyền IAM User xem Dashboard chi phí. | 05/12/2026 | 05/12/2026 | [AWS IAM & Billing Docs](https://cloudjourney.awsstudygroup.com/) |
-| Ngày 3 (13/05) | - Security Hub & DLM <br>&emsp; + Thiết lập policy DLM sao lưu EBS tự động. <br>&emsp; + Đánh giá chuẩn bảo mật qua Security Hub. | 05/13/2026 | 05/13/2026 | [AWS Security Hub Docs](https://cloudjourney.awsstudygroup.com/) |
-| Ngày 4 (14/05) | - Phiên 1: Bảo mật & Kiểm toán <br>&emsp; + Mã hóa S3 bằng Custom KMS Key và kiểm thử chặn truy cập (Access Denied). <br>&emsp; + Ghi log kiểm toán qua AWS CloudTrail. | 05/14/2026 | 05/14/2026 | [AWS KMS & CloudTrail](https://cloudjourney.awsstudygroup.com/) |
-| Ngày 4 (14/05) | - Phiên 2: Tự động hóa & ChatOps <br>&emsp; + Cấu hình lịch trình EventBridge. <br>&emsp; + Kích hoạt Lambda quản lý EC2 và gửi thông báo hệ thống về kênh Slack. | 05/14/2026 | 05/14/2026 | [AWS EventBridge & Lambda](https://cloudjourney.awsstudygroup.com/) |
-| Ngày 4 (14/05) | - Phiên 3: Directory Service <br>&emsp; + Khởi tạo hạ tầng mạng, AD-Manager và Bastion Host. <br>&emsp; + Cấu hình Directory Service và dùng RDP (lệnh ping) để kiểm tra kết nối mạng. | 05/14/2026 | 05/14/2026 | [AWS Directory Service](https://cloudjourney.awsstudygroup.com/) |
-| Ngày 5 (15/05) | - **Dự án nhóm:** Phát triển tính năng <br>&emsp; + Triển khai giao diện Sáng/Tối (Dark Mode). <br>&emsp; + Xây dựng trang Lịch sử bảo mật quản lý phiên đăng nhập. <br>&emsp; + Phát triển tính năng Bình luận ẩn danh. | 05/15/2026 | 05/15/2026 | Project Repo |
+| Ngày 1 | - IaC & Serverless API <br>&emsp; + Khởi chạy CloudFormation qua AWS CDK. <br>&emsp; + Gọi API Gateway tải ảnh lên S3. | 11/05/2026 | 11/05/2026 | [AWS CDK & API Docs](https://cloudjourney.awsstudygroup.com/) |
+| Ngày 2 | - Quản lý IAM & Chi phí <br>&emsp; + Phân quyền IAM User xem Dashboard chi phí. | 12/05/2026 | 12/05/2026 | [AWS IAM & Billing Docs](https://cloudjourney.awsstudygroup.com/) |
+| Ngày 3 | - Security Hub & DLM <br>&emsp; + Thiết lập policy DLM sao lưu EBS tự động. <br>&emsp; + Đánh giá chuẩn bảo mật qua Security Hub. | 13/05/2026 | 13/05/2026 | [AWS Security Hub Docs](https://cloudjourney.awsstudygroup.com/) |
+| Ngày 4 | - Phiên 1: Bảo mật & Kiểm toán <br>&emsp; + Mã hóa S3 bằng Custom KMS Key và kiểm thử chặn truy cập (Access Denied). <br>&emsp; + Ghi log kiểm toán qua AWS CloudTrail. | 14/05/2026 | 14/05/2026 | [AWS KMS & CloudTrail](https://cloudjourney.awsstudygroup.com/) |
+| Ngày 4 | - Phiên 2: Tự động hóa & ChatOps <br>&emsp; + Cấu hình lịch trình EventBridge. <br>&emsp; + Kích hoạt Lambda quản lý EC2 và gửi thông báo hệ thống về kênh Slack. | 14/05/2026 | 14/05/2026 | [AWS EventBridge & Lambda](https://cloudjourney.awsstudygroup.com/) |
+| Ngày 4 | - Phiên 3: Directory Service <br>&emsp; + Khởi tạo hạ tầng mạng, AD-Manager và Bastion Host. <br>&emsp; + Cấu hình Directory Service và dùng RDP (lệnh ping) để kiểm tra kết nối mạng. | 14/05/2026 | 14/05/2026 | [AWS Directory Service](https://cloudjourney.awsstudygroup.com/) |
+| Ngày 5 | - **Dự án nhóm:** Phát triển tính năng <br>&emsp; + Triển khai giao diện Sáng/Tối (Dark Mode). <br>&emsp; + Xây dựng trang Lịch sử bảo mật quản lý phiên đăng nhập. <br>&emsp; + Phát triển tính năng Bình luận ẩn danh. | 15/05/2026 | 15/05/2026 | [Project Repository](https://github.com/pht1412/Mini-Social-Network.git) |
 
 ### Thành tựu Tuần 5:
 - Triển khai thành công kiến trúc hạ tầng phức tạp bằng AWS CDK.

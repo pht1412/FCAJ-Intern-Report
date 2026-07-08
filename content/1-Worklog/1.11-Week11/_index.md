@@ -17,7 +17,7 @@ This week's worklog focuses on deploying interactive application features to pro
 ### Tasks to be carried out this week:
 | Day | Task | Start Date | Completion Date | Reference Material |
 | --- | --- | --- | --- | --- |
-| Day 1-3 | - Feature Development & CI/CD <br>&emsp;+ Develop the Gacha/Lucky Draw feature and UI.<br>&emsp;+ Commit code to trigger Jenkins automated deployment to AWS ECS. | 06/29/2026 | 07/01/2026 | Project Repo |
+| Day 1-3 | - Feature Development & CI/CD <br>&emsp;+ Develop the Gacha/Lucky Draw feature and UI.<br>&emsp;+ Commit code to trigger Jenkins automated deployment to AWS ECS. | 06/29/2026 | 07/01/2026 | [Project Repository](https://github.com/pht1412/Mini-Social-Network.git) |
 | Day 4-7 | - Advanced K6 Load Testing (Normal Flow) <br>&emsp;+ Simulate a real-world journey: login → fetch feed → upload a 5MB image to S3.<br>&emsp;+ Analyze backend stability under realistic traffic patterns. | 07/02/2026 | 07/05/2026 | [K6 Documentation](https://cloudjourney.awsstudygroup.com/) |
 | Day 4-7 | - DDoS Simulation (Malicious Flow) <br>&emsp;+ Simulate a high-volume Layer 7 attack against the `/api/auth/login` endpoint with 500 VUs.<br>&emsp;+ Capture baseline metrics before WAF integration. | 07/02/2026 | 07/05/2026 | [K6 Documentation](https://cloudjourney.awsstudygroup.com/) |
 
@@ -64,7 +64,7 @@ export const options = {
 
 export default function () {
   const loginUrl = `${BASE_URL}/api/auth/login`;
-  const payload = JSON.stringify({ identifier: '141204', password: '1412' });
+  const payload = JSON.stringify({ identifier: '*your username*', password: 'your password' });
   const res = http.post(loginUrl, payload, {
     headers: { 'Content-Type': 'application/json' },
     timeout: '60s',

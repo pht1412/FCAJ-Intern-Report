@@ -10,7 +10,6 @@ pre: " <b> 4. </b> "
 > 
 > Việc tham gia các sự kiện này không chỉ giúp mở rộng kiến thức về Cloud & AI, cập nhật các xu hướng công nghệ mới nhất từ các chuyên gia, mà còn là cơ hội rèn luyện tư duy thiết kế hệ thống và cọ xát thực tế qua các cuộc thi.
 
-Trong quá trình thực tập, tôi đã tham gia 3 events. Mỗi event là một trải nghiệm đáng nhớ với những kiến thức mới, hay và bổ ích, cùng với đó là những món quà thiết thực và những khoảnh khắc cạnh tranh rất tuyệt vời.
 
 ### [Event 1: FCAJ Community Day (Tháng 05/2026)](4.1-Event1/)
 &emsp;**Tên sự kiện:** FCAJ Community Day

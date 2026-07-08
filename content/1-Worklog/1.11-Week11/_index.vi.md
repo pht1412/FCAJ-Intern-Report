@@ -17,7 +17,7 @@ Báo cáo tuần này tập trung vào việc triển khai tính năng tương t
 ### Các công việc thực hiện trong tuần:
 | Ngày | Công việc | Ngày bắt đầu | Ngày hoàn thành | Tài liệu tham khảo |
 | --- | --- | --- | --- | --- |
-| Ngày 1-3 | - Phát triển tính năng & CI/CD <br>&emsp;+ Phát triển giao diện và nghiệp vụ của hệ thống Gacha.<br>&emsp;+ Commit mã nguồn để kích hoạt Jenkins tự động triển khai lên Amazon ECS. | 29/06/2026 | 01/07/2026 | Project Repository |
+| Ngày 1-3 | - Phát triển tính năng & CI/CD <br>&emsp;+ Phát triển giao diện và nghiệp vụ của hệ thống Gacha.<br>&emsp;+ Commit mã nguồn để kích hoạt Jenkins tự động triển khai lên Amazon ECS. | 29/06/2026 | 01/07/2026 | [Project Repository](https://github.com/pht1412/Mini-Social-Network.git) |
 | Ngày 4-7 | - Kiểm thử tải bằng K6 (Luồng thông thường) <br>&emsp;+ Xây dựng kịch bản: Đăng nhập → Xem bảng tin → Đăng bài kèm ảnh 5 MB lên Amazon S3.<br>&emsp;+ Thực thi kiểm thử và đánh giá độ ổn định của hệ thống Backend. | 02/07/2026 | 05/07/2026 | [K6 Documentation](https://cloudjourney.awsstudygroup.com/) |
 | Ngày 4-7 | - Giả lập tấn công DDoS tầng ứng dụng <br>&emsp;+ Xây dựng kịch bản HTTP Flood nhắm vào API `/api/auth/login` với 500 Virtual Users (VUs).<br>&emsp;+ Thu thập số liệu cơ sở trước khi triển khai AWS WAF. | 02/07/2026 | 05/07/2026 | [K6 Documentation](https://cloudjourney.awsstudygroup.com/) |
 
@@ -76,8 +76,8 @@ export default function () {
   const loginUrl = `${BASE_URL}/api/auth/login`;
 
   const payload = JSON.stringify({
-    identifier: '141204',
-    password: '1412',
+    identifier: 'Your username',
+    password: 'Your password',
   });
 
   // Giả lập lưu lượng HTTP Flood liên tục

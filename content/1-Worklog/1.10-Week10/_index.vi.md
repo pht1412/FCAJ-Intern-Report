@@ -18,9 +18,9 @@ Báo cáo tuần này đánh dấu bước hoàn thiện cuối cùng của dự
 ### Các công việc thực hiện trong tuần:
 | Ngày | Công việc | Ngày bắt đầu | Ngày hoàn thành | Tài liệu tham khảo |
 | --- | --- | --- | --- | --- |
-| Ngày 1-7 | - Hạ tầng doanh nghiệp (IaC) <br>&emsp;+ Triển khai 4 CloudFormation Stack gồm: Network, Database, Backend và Frontend. | 22/06/2026 | 28/06/2026 | [AWS CloudFormation](https://cloudjourney.awsstudygroup.com/) |
-| Ngày 1-7 | - Triển khai Bảo mật & FinOps <br>&emsp;+ Tích hợp AWS Systems Manager Parameter Store để quản lý mật khẩu Database và JWT Secret.<br>&emsp;+ Cấu hình EventBridge Scheduler kết hợp ECS Auto Scaling để tự động tắt tài nguyên vào ban đêm. | 22/06/2026 | 28/06/2026 | [AWS SSM & EventBridge](https://cloudjourney.awsstudygroup.com/) |
-| Ngày 1-7 | - Tên miền tùy chỉnh & CI/CD <br>&emsp;+ Mua tên miền `minisocial-network.id.vn`, cấu hình Route53 và AWS Certificate Manager (ACM).<br>&emsp;+ Xây dựng Jenkinsfile để tự động hóa toàn bộ quy trình triển khai. | 22/06/2026 | 28/06/2026 | [AWS Route53 & Jenkins](https://cloudjourney.awsstudygroup.com/) |
+| Ngày 1-3 | - Hạ tầng doanh nghiệp (IaC) <br>&emsp;+ Triển khai 4 CloudFormation Stack gồm: Network, Database, Backend và Frontend. | 22/06/2026 | 24/06/2026 | [AWS CloudFormation](https://cloudjourney.awsstudygroup.com/) |
+| Ngày 4-5 | - Triển khai Bảo mật & FinOps <br>&emsp;+ Tích hợp AWS Systems Manager Parameter Store để quản lý mật khẩu Database và JWT Secret.<br>&emsp;+ Cấu hình EventBridge Scheduler kết hợp ECS Auto Scaling để tự động tắt tài nguyên vào ban đêm. | 25/06/2026 | 26/06/2026 | [AWS SSM & EventBridge](https://cloudjourney.awsstudygroup.com/) |
+| Ngày 6-7 | - Tên miền tùy chỉnh & CI/CD <br>&emsp;+ Mua tên miền `minisocial-network.id.vn`, cấu hình Route53 và AWS Certificate Manager (ACM).<br>&emsp;+ Xây dựng Jenkinsfile để tự động hóa toàn bộ quy trình triển khai. | 27/06/2026 | 28/06/2026 | [AWS Route53 & Jenkins](https://cloudjourney.awsstudygroup.com/) |
 
 ### Thành tựu Tuần 10:
 - Hoàn thành việc chuyển đổi hệ thống sang môi trường AWS Cloud sẵn sàng cho Production.

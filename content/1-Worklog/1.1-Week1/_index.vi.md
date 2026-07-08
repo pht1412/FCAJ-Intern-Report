@@ -18,13 +18,13 @@ Báo cáo tuần này trình bày các bước thiết lập cơ bản cho môi 
 ### Các công việc thực hiện trong tuần:
 | Ngày | Công việc | Ngày bắt đầu | Ngày hoàn thành | Tài liệu tham khảo |
 | --- | --- | --- | --- | --- |
-| Ngày 1 | - Create AdminUser & OperatorUser <br>&emsp; + Tạo hai IAM user riêng biệt phục vụ cho các tác vụ quản trị và vận hành. | 04/23/2026 | 04/23/2026 | [AWS IAM Documentation](https://cloudjourney.awsstudygroup.com/) |
-| Ngày 1 | - Create AdminGroup <br>&emsp; + Khởi tạo IAM user group dành cho cấp quản trị viên. | 04/23/2026 | 04/23/2026 | [AWS IAM Documentation](https://cloudjourney.awsstudygroup.com/) |
-| Ngày 1 | - Create AdminRole <br>&emsp; + Tạo IAM role với trusted entity để cấp quyền truy cập ủy quyền. | 04/23/2026 | 04/23/2026 | [AWS IAM Documentation](https://cloudjourney.awsstudygroup.com/) |
-| Ngày 1 | - Add AdminUser to AdminGroup <br>&emsp; + Thêm user vào group để kế thừa quyền hạn như `AdministratorAccess`. | 04/23/2026 | 04/23/2026 | [AWS IAM Documentation](https://cloudjourney.awsstudygroup.com/) |
-| Ngày 1 | - Check AdminUser on AdminGroup và Switch Role <br>&emsp; + Kiểm tra user trong group và thực hiện thao tác Switch Role từ `OperatorUser` sang `AdminRole`. | 04/23/2026 | 04/23/2026 | [AWS IAM Documentation](https://cloudjourney.awsstudygroup.com/) |
-| Ngày 2 | - Provision EC2 Instances & Test Connectivity <br>&emsp; + Khởi tạo các máy chủ EC2 trong mạng private và sử dụng lệnh `ping` để kiểm tra thông mạng. | 04/24/2026 | 04/24/2026 | [AWS EC2 & VPC Documentation](https://cloudjourney.awsstudygroup.com/) |
-| Ngày 2 | - **Dự án nhóm:** Đánh giá bảo mật <br>&emsp; + Kiểm thử thủ công các chức năng chính. <br>&emsp; + Tổng hợp `security_audit.log` từ các cuộc tấn công qua ngrok. <br>&emsp; + Báo cáo các lỗi chức năng và lỗ hổng bảo mật. | 04/24/2026 | 04/24/2026 | Project Repo |
+| Ngày 1 | - Create AdminUser & OperatorUser <br>&emsp; + Tạo hai IAM user riêng biệt phục vụ cho các tác vụ quản trị và vận hành. | 23/04/2026 | 23/04/2026 | [AWS IAM Documentation](https://cloudjourney.awsstudygroup.com/) |
+| Ngày 1 | - Create AdminGroup <br>&emsp; + Khởi tạo IAM user group dành cho cấp quản trị viên. | 23/04/2026 | 23/04/2026 | [AWS IAM Documentation](https://cloudjourney.awsstudygroup.com/) |
+| Ngày 1 | - Create AdminRole <br>&emsp; + Tạo IAM role với trusted entity để cấp quyền truy cập ủy quyền. | 23/04/2026 | 23/04/2026 | [AWS IAM Documentation](https://cloudjourney.awsstudygroup.com/) |
+| Ngày 1 | - Add AdminUser to AdminGroup <br>&emsp; + Thêm user vào group để kế thừa quyền hạn như `AdministratorAccess`. | 23/04/2026 | 23/04/2026 | [AWS IAM Documentation](https://cloudjourney.awsstudygroup.com/) |
+| Ngày 1 | - Check AdminUser on AdminGroup và Switch Role <br>&emsp; + Kiểm tra user trong group và thực hiện thao tác Switch Role từ `OperatorUser` sang `AdminRole`. | 23/04/2026 | 23/04/2026 | [AWS IAM Documentation](https://cloudjourney.awsstudygroup.com/) |
+| Ngày 2 | - Provision EC2 Instances & Test Connectivity <br>&emsp; + Khởi tạo các máy chủ EC2 trong mạng private và sử dụng lệnh `ping` để kiểm tra thông mạng. | 24/04/2026 | 24/04/2026 | [AWS EC2 & VPC Documentation](https://cloudjourney.awsstudygroup.com/) |
+| Ngày 2 | - **Dự án nhóm:** Đánh giá bảo mật <br>&emsp; + Kiểm thử thủ công các chức năng chính. <br>&emsp; + Tổng hợp `security_audit.log` từ các cuộc tấn công qua ngrok. <br>&emsp; + Báo cáo các lỗi chức năng và lỗ hổng bảo mật. | 24/04/2026 | 24/04/2026 | [Project Repository](https://github.com/pht1412/Mini-Social-Network.git) |
 
 ### Thành tựu Tuần 1:
 - Nắm vững cách quản lý IAM trên AWS Management Console.

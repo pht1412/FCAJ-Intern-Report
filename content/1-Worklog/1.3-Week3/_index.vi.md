@@ -18,11 +18,11 @@ Báo cáo tuần này tập trung vào việc quản lý hạ tầng nhanh chón
 ### Các công việc thực hiện trong tuần:
 | Ngày | Công việc | Ngày bắt đầu | Ngày hoàn thành | Tài liệu tham khảo |
 | --- | --- | --- | --- | --- |
-| Ngày 1  | - Cấp phát hạ tầng qua CLI <br>&emsp; + Khởi tạo và xóa VPC, Subnets, IGW, EC2 bằng AWS CLI. <br>&emsp; + Theo dõi thông số CPUUtilization qua CloudWatch. | 05/06/2026 | 05/06/2026 | [AWS CLI Reference](https://cloudjourney.awsstudygroup.com/) |
-| Ngày 1  | - Lên văn phòng AWS <br>&emsp; + Gặp gỡ và làm việc trực tiếp với các anh/chị AWS Support. | 05/06/2026 | 05/06/2026 | Hoạt động ngoại khóa |
-| Ngày 2  | - Phiên 1: Tự động hóa Backup <br>&emsp; + Tạo chủ đề SNS để nhận thông báo. <br>&emsp; + Triển khai AWS Backup Plan và Vault bằng file mẫu CloudFormation (YAML). <br>&emsp; + Kiểm chứng luồng backup qua EC2/S3 và email thông báo. | 05/07/2026 | 05/07/2026 | [AWS Backup Docs](https://cloudjourney.awsstudygroup.com/) |
-| Ngày 2  | - Phiên 2: Giám sát với Grafana <br>&emsp; + Cấu hình hạ tầng mạng (VPC, IGW, RTB, SG) cơ bản. <br>&emsp; + Thiết lập phân quyền IAM để truy cập Amazon Managed Grafana. <br>&emsp; + Tích hợp CloudWatch làm nguồn dữ liệu để hiển thị biểu đồ trên Grafana. | 05/07/2026 | 05/07/2026 | [Amazon Managed Grafana Docs](https://cloudjourney.awsstudygroup.com/) |
-| Ngày 3  | - **Dự án nhóm:** Tích hợp CI/CD Pipeline <br>&emsp; + Kết nối hệ thống Jenkins với kho lưu trữ mã nguồn GitHub. <br>&emsp; + Cấu hình pipeline tự động cho các dịch vụ frontend và backend. <br>&emsp; + Tự động hóa quá trình đóng gói (build) và đẩy (push) Docker images lên AWS ECR. | 05/08/2026 | 05/08/2026 | Project Repo |
+| Ngày 1  | - Cấp phát hạ tầng qua CLI <br>&emsp; + Khởi tạo và xóa VPC, Subnets, IGW, EC2 bằng AWS CLI. <br>&emsp; + Theo dõi thông số CPUUtilization qua CloudWatch. | 06/05/2026 | 06/05/2026 | [AWS CLI Reference](https://cloudjourney.awsstudygroup.com/) |
+| Ngày 1  | - Lên văn phòng AWS <br>&emsp; + Gặp gỡ và làm việc trực tiếp với các anh/chị AWS Support. | 06/05/2026 | 06/05/2026 | Hoạt động ngoại khóa |
+| Ngày 2  | - Phiên 1: Tự động hóa Backup <br>&emsp; + Tạo chủ đề SNS để nhận thông báo. <br>&emsp; + Triển khai AWS Backup Plan và Vault bằng file mẫu CloudFormation (YAML). <br>&emsp; + Kiểm chứng luồng backup qua EC2/S3 và email thông báo. | 07/05/2026 | 07/05/2026 | [AWS Backup Docs](https://cloudjourney.awsstudygroup.com/) |
+| Ngày 2  | - Phiên 2: Giám sát với Grafana <br>&emsp; + Cấu hình hạ tầng mạng (VPC, IGW, RTB, SG) cơ bản. <br>&emsp; + Thiết lập phân quyền IAM để truy cập Amazon Managed Grafana. <br>&emsp; + Tích hợp CloudWatch làm nguồn dữ liệu để hiển thị biểu đồ trên Grafana. | 07/05/2026 | 07/05/2026 | [Amazon Managed Grafana Docs](https://cloudjourney.awsstudygroup.com/) |
+| Ngày 3  | - **Dự án nhóm:** Tích hợp CI/CD Pipeline <br>&emsp; + Kết nối hệ thống Jenkins với kho lưu trữ mã nguồn GitHub. <br>&emsp; + Cấu hình pipeline tự động cho các dịch vụ frontend và backend. <br>&emsp; + Tự động hóa quá trình đóng gói (build) và đẩy (push) Docker images lên AWS ECR. | 08/05/2026 | 08/05/2026 | [Project Repository](https://github.com/pht1412/Mini-Social-Network.git) |
 
 ### Thành tựu Tuần 3:
 - Thao tác thuần thục với AWS CLI, hiểu rõ cách xử lý các lỗi ràng buộc tài nguyên (DependencyViolation) khi dọn dẹp.

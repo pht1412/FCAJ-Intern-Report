@@ -15,7 +15,7 @@ Báo cáo tuần này tập trung vào hai đầu việc chính: xây dựng bá
 ### Các công việc thực hiện trong tuần:
 | Ngày | Công việc | Ngày bắt đầu | Ngày hoàn thành | Tài liệu tham khảo |
 | --- | --- | --- | --- | --- |
-| Ngày 1-3 | - Báo cáo kiểm thử phần mềm bằng JaCoCo <br>&emsp;+ Trình bày cách thêm plugin JaCoCo vào dự án Maven/Gradle.<br>&emsp;+ Cấu hình JaCoCo để sinh báo cáo độ phủ mã nguồn (Code Coverage Report).<br>&emsp;+ Kiểm thử tầng API Controller bằng MockMvc.<br>&emsp;+ Kiểm thử tầng Service bằng Mockito.<br>&emsp;+ Phân tích kết quả báo cáo JaCoCo (Line Coverage, Branch Coverage). | 06/07/2026 | 08/07/2026 | [JaCoCo Documentation](https://www.jacoco.org/jacoco/trunk/doc/) |
+| Ngày 1-3 | - Báo cáo kiểm thử phần mềm bằng JaCoCo <br>&emsp;+ Trình bày cách thêm plugin JaCoCo vào dự án Maven/Gradle.<br>&emsp;+ Cấu hình JaCoCo để sinh báo cáo độ phủ mã nguồn (Code Coverage Report).<br>&emsp;+ Kiểm thử tầng API Controller bằng MockMvc.<br>&emsp;+ Kiểm thử tầng Service bằng Mockito.<br>&emsp;+ Phân tích kết quả báo cáo JaCoCo (Line Coverage, Branch Coverage). | 07/07/2026 | 08/07/2026 | [JaCoCo Documentation](https://www.jacoco.org/jacoco/trunk/doc/) |
 | Ngày 4-7 | - Tổng hợp nội dung xây dựng Internal Report trên Hugo <br>&emsp;+ Rà soát và tổng hợp toàn bộ nội dung worklog từ Tuần 1 đến Tuần 11.<br>&emsp;+ Cấu trúc lại nội dung theo format chuẩn của Hugo.<br>&emsp;+ Bổ sung hình ảnh minh chứng, code snippet và sơ đồ kiến trúc.<br>&emsp;+ Kiểm tra và đảm bảo tính nhất quán giữa phiên bản tiếng Việt và tiếng Anh. | 09/07/2026 | 12/07/2026 | [Hugo Documentation](https://gohugo.io/documentation/) |
 
 ### Thành tựu Tuần 12:

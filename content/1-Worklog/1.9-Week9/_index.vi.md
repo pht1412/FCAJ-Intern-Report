@@ -16,8 +16,8 @@ Báo cáo tuần này tập trung vào việc nâng cao trải nghiệm người
 ### Các công việc thực hiện trong tuần:
 | Ngày | Công việc | Ngày bắt đầu | Ngày hoàn thành | Tài liệu tham khảo |
 | --- | --- | --- | --- | --- |
-| Ngày 1-7 (15/06 - 21/06) | - Phát triển Frontend <br>&emsp; + Đồng bộ hóa luồng điều hướng Username. <br>&emsp; + Thay đổi và cải thiện hệ thống thông báo. <br>&emsp; + Tích hợp bộ công cụ cắt ảnh (Image Cropper). | 06/15/2026 | 06/21/2026 | Project Repo |
-| Ngày 1-7 (15/06 - 21/06) | - Phát triển Full-stack <br>&emsp; + Xây dựng tính năng tương tác tin nhắn (Chat). <br>&emsp; + Tích hợp công cụ tìm kiếm người dùng trong hệ thống Chat. | 06/15/2026 | 06/21/2026 | Project Repo |
+| Ngày 1-4 | - Phát triển Frontend <br>&emsp; + Đồng bộ hóa luồng điều hướng Username. <br>&emsp; + Thay đổi và cải thiện hệ thống thông báo. <br>&emsp; + Tích hợp bộ công cụ cắt ảnh (Image Cropper). | 15/06/2026 | 18/06/2026 | [Project Repository](https://github.com/pht1412/Mini-Social-Network.git) |
+| Ngày 5-7 | - Phát triển Full-stack <br>&emsp; + Xây dựng tính năng tương tác tin nhắn (Chat). <br>&emsp; + Tích hợp công cụ tìm kiếm người dùng trong hệ thống Chat. | 19/06/2026 | 21/06/2026 | [Project Repository](https://github.com/pht1412/Mini-Social-Network.git) |
 
 ### Thành tựu Tuần 9:
 - Hoàn thiện thành công các module cốt lõi của mạng xã hội, cải thiện rõ rệt khả năng tương tác và xử lý đa phương tiện của người dùng cuối.
