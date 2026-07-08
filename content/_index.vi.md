@@ -13,7 +13,7 @@ chapter: false
 
 &emsp; **Email:** lhp141204@gmail.com
 
-&emsp; **Trường:** Trường Đại Học Công Nghệ Thông Tin TP.HCM
+&emsp; **Trường:** Trường Đại Học Công Nghệ Thông Tin TP.HCM - HUTECH
 
 &emsp; **Ngành:** Công nghệ thông tin
 
