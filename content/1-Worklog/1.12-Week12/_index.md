@@ -116,3 +116,6 @@ Completed the consolidation and restructuring of all report content from Week 1 
 - Workshop documentation with system architecture and deployment phases.
 - Supporting evidence: screenshots and code snippets.
 - Ensured consistency between Vietnamese and English versions.
+
+#### 6. Team Offline Meeting
+![Team Offline Meeting](/images/1-Worklog/Week12/0807_meeting_w12.jpg)

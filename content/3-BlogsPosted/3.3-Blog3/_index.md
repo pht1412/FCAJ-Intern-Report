@@ -75,3 +75,4 @@ To visually illustrate the core difference between the two mechanisms, the diagr
 
 > **References:**
 > * Original article by Channy Yun (AWS News Blog): [Amazon ECS introduces new high-resolution metrics for faster service auto scaling](https://aws.amazon.com/blogs/aws/amazon-ecs-introduces-new-high-resolution-metrics-for-faster-service-auto-scaling/)
+> * Original post on AWS Study Group VN: [Access the post here](https://www.facebook.com/groups/awsstudygroupfcj/permalink/2205021196929507/?rdid=wLZS25hhop1qb4hd)

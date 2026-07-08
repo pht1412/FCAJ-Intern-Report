@@ -75,3 +75,4 @@ Tính năng Service Auto Scaling nhanh hơn với metric độ phân giải cao 
 
 > **Tài liệu tham khảo:**
 > * Bài viết gốc của tác giả Channy Yun (AWS News Blog): [Amazon ECS introduces new high-resolution metrics for faster service auto scaling](https://aws.amazon.com/blogs/aws/amazon-ecs-introduces-new-high-resolution-metrics-for-faster-service-auto-scaling/)
+> * Bài viết gốc trên cộng đồng AWS Study Group VN: [Truy cập bài đăng tại đây](https://www.facebook.com/groups/awsstudygroupfcj/permalink/2205021196929507/?rdid=wLZS25hhop1qb4hd)

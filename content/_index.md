@@ -26,7 +26,7 @@ chapter: false
 
 &emsp; **Internship Position:** Cloud Engineer
 
-&emsp; **Internship Duration:** From 12/04/2026 to 12/07/2026
+&emsp; **Internship Duration:** From 15/04/2026 to 15/07/2026
 
 ![Your profile picture](/images/avatar.png)
 

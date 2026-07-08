@@ -117,3 +117,5 @@ Hoàn thành việc tổng hợp và cấu trúc lại toàn bộ nội dung bá
 - Hình ảnh minh chứng và code snippet.
 - Đảm bảo tính nhất quán giữa phiên bản tiếng Việt và tiếng Anh.
 
+#### 6. Họp nhóm trực tiếp (Offline)
+![Họp nhóm trực tiếp](/images/1-Worklog/Week12/0807_meeting_w12.jpg)

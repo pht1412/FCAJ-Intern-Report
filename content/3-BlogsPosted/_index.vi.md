@@ -1,5 +1,5 @@
 ---
-title: "Bài viết đã đăng (Blogs Posted)"
+title: "Các bài blogs đã đăng"
 date: 2024-01-01
 weight: 3
 chapter: false

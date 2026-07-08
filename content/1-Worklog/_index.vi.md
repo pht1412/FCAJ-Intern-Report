@@ -1,14 +1,14 @@
 ---
-title: "Nhật ký công việc (Worklog)"
+title: "Nhật ký công việc"
 date: 2026-07-06
 weight: 1
 chapter: false
 pre: " <b> 1. </b> "
 ---
 
-Chào mừng bạn đến với **Nhật ký công việc (Worklog)**! Tài liệu này là một cuốn nhật ký ghi chép lại toàn bộ hành trình 3 tháng (12 tuần) thực tập của nhóm.
+Chào mừng bạn đến với **Nhật ký công việc**! Tài liệu này là một cuốn nhật ký ghi chép lại toàn bộ hành trình 3 tháng (12 tuần) thực tập.
 
-Trong suốt chương trình thực tập này, nhóm đã ghi chép lại một cách tỉ mỉ tiến độ công việc, các thách thức kỹ thuật và sự phối hợp nhịp nhàng giữa các thành viên. Dưới đây là lộ trình tổng quan về những thành tựu nhóm đã đạt được trong 12 tuần qua.
+Trong suốt chương trình thực tập này, tôi đã ghi chép lại một cách tỉ mỉ tiến độ công việc, các thách thức kỹ thuật và sự phối hợp nhịp nhàng giữa các thành viên. Dưới đây là lộ trình tổng quan về những thành tựu đã đạt được trong 12 tuần qua.
 
 ### Lộ trình dự án & Cột mốc hàng tuần
 
