@@ -25,7 +25,7 @@ pre: " <b> 4. </b> "
 <br>
 &emsp;**Thời gian:** Ngày 20/06/2026
 <br>
-&emsp;**Địa điểm:** Nền tảng thi đấu trực tuyến
+&emsp;**Địa điểm:** Tầng 26, tòa nhà Bitexco Financial Tower, số 02 đường Hải Triều, Quận 1, TP. Hồ Chí Minh
 <br>
 &emsp;**Vai trò trong sự kiện:** Thí sinh thi đấu (Nhóm trưởng của nhóm PrimeOps)
 

@@ -25,7 +25,7 @@ pre: " <b> 4. </b> "
 <br>
 &emsp;**Time:** June 20, 2026
 <br>
-&emsp;**Location:** Online Competition Platform
+&emsp;**Location:** 26th Floor, Bitexco Financial Tower, 2 Hai Trieu Street, District 1, Ho Chi Minh City
 <br>
 &emsp;**Role in Event:** Competitor (Lead of Team PrimeOps)
 
