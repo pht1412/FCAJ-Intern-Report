@@ -21,28 +21,28 @@ Configured an AWS Site-to-Site VPN, troubleshooted IAM permissions for EC2, and 
 Automated disaster recovery using AWS Backup, configured Amazon Managed Grafana, and established a Jenkins CI/CD pipeline integrated with GitHub.
 
 **Week 4:** [AWS Systems Manager, VPC Endpoints & ECS Fargate ClickOps](1.4-Week4/)  
-Managed EC2 fleets via Systems Manager, secured access via PrivateLink, and manually deployed the application backend to Amazon ECS Fargate (ClickOps). (Offline meeting May 15).
+Managed EC2 fleets via Systems Manager, secured access via PrivateLink, and manually deployed the application backend to Amazon ECS Fargate (ClickOps).
 
 **Week 5:** [Infrastructure as Code, Serverless Workflows & ChatOps](1.5-Week5/)  
 Deployed infrastructure using AWS CDK, implemented serverless workflows (API Gateway, Lambda), and integrated Slack ChatOps.
 
 **Week 6:** [AWS Security Services & CI/CD Pipeline for Containers](1.6-Week6/)  
-Enabled intelligent threat detection with GuardDuty, managed credentials via Secrets Manager, and fully automated container deployments to ECR/ECS. (Offline meeting May 29).
+Enabled intelligent threat detection with GuardDuty, managed credentials via Secrets Manager, and fully automated container deployments to ECR/ECS.
 
 **Week 7:** [Automated Architecture Provisioning with CloudFormation & RDS](1.7-Week7/)  
-Transitioned to Infrastructure as Code by codifying the VPC network topology, secure Amazon RDS, and backend ECS deployments using CloudFormation. (Offline meeting June 04).
+Transitioned to Infrastructure as Code by codifying the VPC network topology, secure Amazon RDS, and backend ECS deployments using CloudFormation.
 
 **Week 8:** [System Performance Testing & Bottleneck Analysis](1.8-Week8/)  
 Visualized the 3-Tier Architecture, conducted rigorous K6 Load Testing, and analyzed telemetry data to identify system bottlenecks.
 
 **Week 9:** [Full-stack Application Enhancements & CI/CD Maintenance](1.9-Week9/)  
-Implemented full-stack user experience improvements and ensured zero-downtime deployments via the automated Jenkins CI/CD pipeline. (Offline meeting June 12).
+Implemented full-stack user experience improvements and ensured zero-downtime deployments via the automated Jenkins CI/CD pipeline.
 
 **Week 10:** [Enterprise Architecture, FinOps & Custom Domain Setup](1.10-Week10/)  
-Upgraded to a Multi-AZ highly available infrastructure, implemented FinOps via EventBridge scheduling, and secured traffic with Route53 and ACM certificates. (Offline meeting June 19).
+Upgraded to a Multi-AZ highly available infrastructure, implemented FinOps via EventBridge scheduling, and secured traffic with Route53 and ACM certificates.
 
 **Week 11:** [Advanced Load Testing & DDoS Simulation](1.11-Week11/)  
-Deployed the interactive Gacha feature, conducted rigorous K6 performance testing (5MB file uploads), and simulated Layer 7 HTTP flood attacks to gather baseline metrics. (Offline meeting July 03).
+Deployed the interactive Gacha feature, conducted rigorous K6 performance testing (5MB file uploads), and simulated Layer 7 HTTP flood attacks to gather baseline metrics.
 
 **Week 12:** [JaCoCo Testing Report & Internal Report Consolidation](1.12-Week12/)  
 Built a software testing report using JaCoCo for Code Coverage measurement across two layers — Controller (MockMvc) and Service (Mockito) — and consolidated all content into a complete Internal Report on Hugo.
