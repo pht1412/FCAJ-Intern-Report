@@ -24,41 +24,57 @@ Nền tảng sử dụng AWS CloudFormation (IaC) để khởi tạo mạng VPC 
 Giải pháp tạo ra một bộ khuôn mẫu (blueprint) nềnảng để các kỹ sư học hỏi và áp dụng các thực tiễn DevOps doanh nghiệp. Dự án thay thế hoàn toàn quy trình triển khai thủ công bằng Jenkins pipeline tự động, tiết kiệm thời gian đáng kể và giảm thiểu sai sót do con người. Chi phí hạ tầng hàng tháng được tối ưu cực mạnh xuống còn khoảng $45.00 – $60.00 USD thông qua việc dùng ECS Fargate Spot và EventBridge Scheduler để tắt hạ tầng ngoài giờ cao điểm (tiết kiệm ~37.5% chi phí chạy máy). Giá trị hoàn vốn đạt được nhờ vào lượng lớn thời gian tiết kiệm được và việc sở hữu một thư viện CloudFormation IaC có khả năng tái sử dụng cao.
 
 ### 3. Kiến trúc giải pháp
-Nền tảng sử dụng kiến trúc AWS serverless và container hóa để quản lý lưu lượng người dùng và logic ứng dụng. Dữ liệu được lưu trữ trong Amazon RDS cho SQL Server, xử lý backend được thực hiện bởi ECS Fargate, và frontend được phân phối qua CloudFront. Chi tiết kiến trúc như sau:
+Nền tảng sử dụng kiến trúc AWS container hóa (ECS Fargate — Serverless Compute) kết hợp các dịch vụ quản lý (Managed Services) để vận hành toàn bộ hệ thống. Backend Spring Boot chạy trong Docker container trên ECS Fargate (Multi-AZ), frontend React được lưu trữ trên S3 Private và phân phối toàn cầu qua CloudFront (OAC), dữ liệu lưu trữ trong Amazon RDS for SQL Server tại Private Subnet. Kiến trúc được chia thành **4 vùng chính** và **2 luồng dữ liệu**:
 
-#### 1. Luồng Request chính
+- **Vùng 1 — External:** Người dùng cuối, Grafana Cloud (monitoring SaaS), Jenkins Server (CI/CD local).
+- **Vùng 2 — AWS Global Services (ngoài VPC):** Route 53 (DNS), CloudFront + WAF + ACM (CDN/Bảo mật/SSL), S3 (Frontend Private + Media Storage).
+- **Vùng 3 — AWS Region / VPC (10.0.0.0/16):** Internet Gateway, ALB + WAF (Public Subnet), ECS Fargate Multi-AZ (Public Subnet A & B), RDS SQL Server (Private Subnet-Data A), cùng các dịch vụ hỗ trợ (ECR, CloudWatch, Secrets Manager, SSM Parameter Store, EventBridge Scheduler).
+- **Vùng 4 — Management & CI/CD Pipeline:** Jenkins Server điều phối build/deploy, Grafana Cloud trực quan hóa metrics.
+
+#### 1. Luồng Request của người dùng
 
 ```mermaid
 flowchart LR
-    %% DNS Resolution
+    %% [1] Phân giải DNS
     User["👤 User"] -.->|"[1] Phân giải DNS"| R53["Amazon Route 53"]
     
-    %% Frontend Flow
-    User -->|"[2a] Truy cập Web"| CF["CloudFront (có WAF)"]
-    CF -->|"OAC"| S3F["S3 Frontend (Private)"]
+    %% [2a] Luồng Frontend — Route 53 → CloudFront
+    R53 -->|"[2a] Định tuyến Frontend"| CF["CloudFront"]
+    WAF_CF["AWS WAF (CloudFront)"] -.->|"[1a] Lọc traffic độc hại"| CF
+    ACM_CF["ACM (us-east-1)"] -.->|"SSL/TLS Cert"| CF
+    CF -->|"[1b] OAC Restricted Access"| S3F["S3 Frontend (Private)"]
     
-    %% API Flow
-    User -->|"[2] Gọi API"| IGW["Internet Gateway"]
-    IGW -->|"[3] Chuyển tiếp"| ALB["ALB (có WAF)"]
+    %% [2] Luồng API — Route 53 → IGW → ALB
+    R53 -->|"[2] Định tuyến API Backend"| IGW["Internet Gateway"]
+    IGW -->|"[3] Chuyển tiếp API Traffic"| ALB["Application Load Balancer"]
+    WAF_ALB["AWS WAF (ALB)"] -.->|"[3a] Lọc traffic độc hại"| ALB
+    ACM_ALB["ACM (Region)"] -.->|"SSL/TLS Cert"| ALB
     
-    %% Backend Compute
-    ALB -->|"[4] Phân tải"| ECS1["ECS Fargate (AZ-1)"]
-    ALB -->|"[4] Phân tải"| ECS2["ECS Fargate (AZ-2)"]
+    %% [4] Backend Compute — ALB → ECS (Multi-AZ)
+    ALB -->|"[4] Xử lý Backend Logic"| ECS1["ECS Fargate (AZ-A)"]
+    ALB -->|"[4] Xử lý Backend Logic"| ECS2["ECS Fargate (AZ-B)"]
     
-    %% Secrets & DB
-    SSM["SSM Parameter Store"] -.->|"[5b] Lấy config"| ECS1
-    SSM -.->|"[5b] Lấy config"| ECS2
-    ECS1 -->|"[6] Đọc/Ghi dữ liệu"| RDS["RDS SQL Server"]
+    %% [5a/5b] Secrets & Config
+    SM["Secrets Manager"] -.->|"[5a] Lấy Secrets"| ECS1
+    SM -.->|"[5a] Lấy Secrets"| ECS2
+    SSM["Systems Manager"] -.->|"[5b] Lấy Parameters"| ECS1
+    SSM -.->|"[5b] Lấy Parameters"| ECS2
+    
+    %% [6] Database
+    ECS1 -->|"[6] Đọc/Ghi dữ liệu"| RDS["RDS SQL Server (Private Subnet)"]
     ECS2 -->|"[6] Đọc/Ghi dữ liệu"| RDS
     
-    %% VPC Endpoint & NAT
-    ECS1 -->|"[7a] Upload Media"| VPCE["S3 VPC Endpoint"]
-    ECS2 -->|"[7a] Upload Media"| VPCE
-    VPCE --> S3M["S3 Media Storage"]
+    %% [7] Upload Media qua VPC Endpoint
+    ECS1 -->|"[7] Upload Media Files"| S3M["S3 Media Storage"]
+    ECS2 -->|"[7] Upload Media Files"| S3M
     
-    %% Monitoring
-    ECS1 -->|"[8] Ghi Logs"| CW["CloudWatch"]
-    CW -->|"[9] Trực quan hóa"| Grafana["Grafana Cloud"]
+    %% [8-9] Monitoring
+    ECS1 -->|"[8] Đẩy Logs & Metrics"| CW["CloudWatch"]
+    ECS2 -->|"[8] Đẩy Logs & Metrics"| CW
+    CW -->|"[9] Trực quan hóa Dashboard"| Grafana["Grafana Cloud"]
+    
+    %% [D] Tối ưu Chi phí
+    EB["EventBridge Scheduler"] -.->|"[D] Lập lịch Tắt/Bật"| RDS
 ```
 
 #### 2. Luồng CI/CD
@@ -66,37 +82,37 @@ flowchart LR
 ```mermaid
 flowchart LR
     Dev["👨💻 Developer"] -->|"Git Push"| GH["GitHub"]
-    GH -->|"Kích hoạt"| Jenkins["Jenkins Server"]
+    GH -->|"Poll SCM"| Jenkins["Jenkins Server"]
     
-    %% Backend Deployment
-    Jenkins -->|"[A] Build & Push"| ECR["AWS ECR"]
-    Jenkins -->|"[B] Cập nhật Task"| ECS["ECS Fargate"]
-    ECR -.->|"Pull Image (qua NAT)"| ECS
+    %% Backend Pipeline
+    Jenkins -->|"[A] Build & Push Image"| ECR["Amazon ECR"]
+    ECR -->|"[B] Pull Docker Image"| ECS["ECS Fargate"]
     
-    %% Frontend Deployment
-    Jenkins -->|"[C] Upload File tĩnh"| S3["S3 Frontend"]
-    Jenkins -->|"[D] Xóa Cache"| CF["CloudFront"]
+    %% Frontend Pipeline
+    Jenkins -->|"Upload file tĩnh"| S3["S3 Frontend (Private)"]
+    Jenkins -->|"[C] Xóa Cache"| CF["CloudFront"]
 ```
 
 ![MiniSocial Architecture](/images/2-Proposal/Minisocial-Architect_final.png)
 
 **Các dịch vụ AWS được sử dụng**
 - **Amazon VPC & Networking:** Multi-AZ subnets, NAT Gateway, và S3 Gateway Endpoint để cô lập mạng an toàn.
-- **Amazon ECS Fargate:** Môi trường chạy container serverless cho các ứng dụng backend.
+- **Amazon ECS Fargate:** Môi trường chạy container serverless cho các ứng dụng backend (Multi-AZ).
 - **Amazon RDS cho SQL Server:** Dịch vụ cơ sở dữ liệu quản lý đặt trong subnet riêng biệt.
-- **Amazon S3 & CloudFront:** Lưu trữ an toàn frontend qua OAC và phân phối nội dung toàn cầu.
-- **AWS WAF & ACM:** Tường lửa bảo vệ ứng dụng web cấp doanh nghiệp và cấp phát chứng chỉ SSL/TLS tự động.
-- **Amazon Route 53:** Quản lý DNS với tính sẵn sàng cao.
+- **Amazon S3 & CloudFront:** Lưu trữ frontend an toàn qua OAC và phân phối nội dung toàn cầu, kèm lưu trữ media.
+- **AWS WAF & ACM:** Tường lửa ứng dụng web cấp doanh nghiệp bảo vệ cả CloudFront và ALB, kết hợp chứng chỉ SSL/TLS tự động từ AWS Certificate Manager.
+- **Amazon Route 53:** Quản lý DNS với tính sẵn sàng cao cho cả domain frontend và API.
 - **Amazon ECR & Jenkins:** Kho lưu trữ Docker bảo mật và hệ thống pipeline CI/CD tự động.
-- **Amazon CloudWatch & EventBridge:** Thu thập log hệ thống, giám sát hạ tầng và lập lịch tự động.
-- **AWS Systems Manager Parameter Store:** Lưu trữ và quản lý cấu hình ứng dụng và bí mật an toàn.
+- **Amazon CloudWatch & EventBridge:** Thu thập log hệ thống, giám sát hạ tầng và lập lịch tự động (tối ưu chi phí qua lịch tắt/bật).
+- **AWS Secrets Manager:** Lưu trữ an toàn các secrets nhạy cảm (mật khẩu DB, JWT secret, API keys).
+- **AWS Systems Manager Parameter Store:** Quản lý cấu hình ứng dụng không nhạy cảm và biến môi trường.
 
 **Thiết kế thành phần**
-- **Frontend (Giao diện Web):** Ứng dụng React được xây dựng bằng TypeScript, phân phối giao diện thông qua CloudFront.
-- **Backend (Tầng API):** Ứng dụng Spring Boot chạy trong các Docker container trên ECS Fargate để xử lý logic nghiệp vụ.
-- **Lưu trữ Dữ liệu:** Amazon RDS cho SQL Server đóng vai trò là cơ sở dữ liệu quan hệ chính.
-- **CI/CD Pipeline:** Máy chủ Jenkins điều phối quá trình build, test, và triển khai sử dụng kịch bản Jenkinsfile.
-- **Bảo mật & Truy cập:** AWS WAF kiểm tra lưu lượng truy cập từ ngoài rìa mạng (edge) và tại ALB để chặn các request độc hại.
+- **Frontend (Giao diện Web):** Ứng dụng React xây dựng bằng TypeScript, phân phối qua CloudFront với quyền truy cập OAC vào S3 bucket private.
+- **Backend (Tầng API):** Ứng dụng Spring Boot chạy trong Docker container trên ECS Fargate tại 2 Availability Zone, xử lý logic nghiệp vụ với sticky session hỗ trợ WebSocket.
+- **Lưu trữ Dữ liệu:** Amazon RDS cho SQL Server trong private subnet đóng vai trò cơ sở dữ liệu quan hệ chính.
+- **CI/CD Pipeline:** Jenkins điều phối quá trình build, test và triển khai — Backend qua ECR → ECS, Frontend qua S3 → CloudFront invalidation.
+- **Bảo mật & Truy cập:** Hai lớp AWS WAF kiểm tra traffic tại CloudFront (edge) và ALB (VPC) để chặn request độc hại. Secrets Manager và SSM Parameter Store quản lý credentials an toàn.
 
 ### 4. Triển khai kỹ thuật 
 **Các giai đoạn triển khai**
@@ -159,3 +175,5 @@ Dịch vụ AWS (Ước tính hàng tháng):
 **Giá trị lâu dài**
 - Sở hữu một bộ CloudFormation blueprint dạng module hóa, tái sử dụng cao cho các ứng dụng tương lai.
 - Tạo ra một môi trường đào tạo mạnh mẽ cho các kỹ sư đang chuyển đổi sang kiến trúc Cloud-Native trên AWS.
+
+> * Sơ đồ Kiến trúc (Bản Full HD): [Xem chi tiết tại đây](https://mini-social-architect.s3.ap-southeast-1.amazonaws.com/Minisocial_Architect_final.png)

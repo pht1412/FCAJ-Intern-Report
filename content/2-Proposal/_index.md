@@ -23,42 +23,57 @@ The platform uses AWS CloudFormation for Infrastructure as Code (IaC) to provisi
 The solution establishes a foundational blueprint for engineers to understand and implement enterprise DevOps practices. It completely replaces manual deployment processes with automated Jenkins pipelines, saving significant time and reducing human error. Monthly infrastructure costs are heavily optimized to approximately $45.00 – $60.00 USD by utilizing ECS Fargate Spot and EventBridge Scheduler to power down environments during off-peak hours (saving ~37.5% runtime costs). The break-even value is achieved through immense time savings and the creation of a highly reusable CloudFormation template library.
 
 ### 3. Solution Architecture
-The platform employs a serverless and containerized AWS architecture to manage user traffic and application logic. Data is stored in Amazon RDS for SQL Server, backend processing is handled by ECS Fargate, and the frontend is delivered via CloudFront. The architecture is detailed below:
+The platform uses a containerized AWS architecture (ECS Fargate — Serverless Compute) combined with Managed Services to operate the entire system. The Spring Boot backend runs in Docker containers on ECS Fargate (Multi-AZ), the React frontend is stored on a Private S3 bucket and delivered globally via CloudFront (OAC), and data is persisted in Amazon RDS for SQL Server within a Private Subnet. The architecture is divided into **4 main zones** and **2 data flows**:
 
+- **Zone 1 — External:** End users, Grafana Cloud (monitoring SaaS), Jenkins Server (local CI/CD).
+- **Zone 2 — AWS Global Services (outside VPC):** Route 53 (DNS), CloudFront + WAF + ACM (CDN/Security/SSL), S3 (Private Frontend + Media Storage).
+- **Zone 3 — AWS Region / VPC (10.0.0.0/16):** Internet Gateway, ALB + WAF (Public Subnet), ECS Fargate Multi-AZ (Public Subnet A & B), RDS SQL Server (Private Subnet-Data A), plus supporting services (ECR, CloudWatch, Secrets Manager, SSM Parameter Store, EventBridge Scheduler).
+- **Zone 4 — Management & CI/CD Pipeline:** Jenkins Server orchestrates build/deploy, Grafana Cloud visualizes metrics.
 
-#### 1. Main Request Flow (Data Flow)
+#### 1. User Request Flow
 
 ```mermaid
 flowchart LR
-    %% DNS Resolution
+    %% [1] DNS Resolution
     User["👤 User"] -.->|"[1] DNS Resolution"| R53["Amazon Route 53"]
     
-    %% Frontend Flow
-    User -->|"[2a] Web Access"| CF["CloudFront (w/ WAF)"]
-    CF -->|"OAC"| S3F["S3 Frontend (Private)"]
+    %% [2a] Frontend Flow — Route 53 → CloudFront
+    R53 -->|"[2a] Route to Frontend"| CF["CloudFront"]
+    WAF_CF["AWS WAF (CloudFront)"] -.->|"[1a] Filter Malicious Traffic"| CF
+    ACM_CF["ACM (us-east-1)"] -.->|"SSL/TLS Cert"| CF
+    CF -->|"[1b] OAC Restricted Access"| S3F["S3 Frontend (Private)"]
     
-    %% API Flow
-    User -->|"[2] API Request"| IGW["Internet Gateway"]
-    IGW -->|"[3] Route Traffic"| ALB["ALB (w/ WAF)"]
+    %% [2] API Flow — Route 53 → IGW → ALB
+    R53 -->|"[2] Route to API Backend"| IGW["Internet Gateway"]
+    IGW -->|"[3] Route API Traffic"| ALB["Application Load Balancer"]
+    WAF_ALB["AWS WAF (ALB)"] -.->|"[3a] Filter Malicious Traffic"| ALB
+    ACM_ALB["ACM (Region)"] -.->|"SSL/TLS Cert"| ALB
     
-    %% Backend Compute
-    ALB -->|"[4] Load Balance"| ECS1["ECS Fargate (AZ-1)"]
-    ALB -->|"[4] Load Balance"| ECS2["ECS Fargate (AZ-2)"]
+    %% [4] Backend Compute — ALB → ECS (Multi-AZ)
+    ALB -->|"[4] Process Backend Logic"| ECS1["ECS Fargate (AZ-A)"]
+    ALB -->|"[4] Process Backend Logic"| ECS2["ECS Fargate (AZ-B)"]
     
-    %% Secrets & DB
-    SSM["SSM Parameter Store"] -.->|"[5b] Fetch Config"| ECS1
-    SSM -.->|"[5b] Fetch Config"| ECS2
-    ECS1 -->|"[6] Read/Write Data"| RDS["RDS SQL Server"]
+    %% [5a/5b] Secrets & Config
+    SM["Secrets Manager"] -.->|"[5a] Fetch Secrets"| ECS1
+    SM -.->|"[5a] Fetch Secrets"| ECS2
+    SSM["Systems Manager"] -.->|"[5b] Fetch Parameters"| ECS1
+    SSM -.->|"[5b] Fetch Parameters"| ECS2
+    
+    %% [6] Database
+    ECS1 -->|"[6] Read/Write Data"| RDS["RDS SQL Server (Private Subnet)"]
     ECS2 -->|"[6] Read/Write Data"| RDS
     
-    %% VPC Endpoint & NAT
-    ECS1 -->|"[7a] Upload Media"| VPCE["S3 VPC Endpoint"]
-    ECS2 -->|"[7a] Upload Media"| VPCE
-    VPCE --> S3M["S3 Media Storage"]
+    %% [7] Media Upload via VPC Endpoint
+    ECS1 -->|"[7] Upload Media Files"| S3M["S3 Media Storage"]
+    ECS2 -->|"[7] Upload Media Files"| S3M
     
-    %% Monitoring
-    ECS1 -->|"[8] Push Logs"| CW["CloudWatch"]
-    CW -->|"[9] Visualize"| Grafana["Grafana Cloud"]
+    %% [8-9] Monitoring
+    ECS1 -->|"[8] Push Logs & Metrics"| CW["CloudWatch"]
+    ECS2 -->|"[8] Push Logs & Metrics"| CW
+    CW -->|"[9] Visualize Dashboard"| Grafana["Grafana Cloud"]
+    
+    %% [D] Cost Optimization
+    EB["EventBridge Scheduler"] -.->|"[D] Schedule Start/Stop"| RDS
 ```
 
 #### 2. CI/CD Pipeline Flow
@@ -66,37 +81,37 @@ flowchart LR
 ```mermaid
 flowchart LR
     Dev["👨💻 Developer"] -->|"Git Push"| GH["GitHub"]
-    GH -->|"Trigger"| Jenkins["Jenkins Server"]
+    GH -->|"Poll SCM"| Jenkins["Jenkins Server"]
     
-    %% Backend Deployment
-    Jenkins -->|"[A] Build & Push"| ECR["AWS ECR"]
-    Jenkins -->|"[B] Update Task"| ECS["ECS Fargate"]
-    ECR -.->|"Pull Image (via NAT)"| ECS
+    %% Backend Pipeline
+    Jenkins -->|"[A] Build & Push Image"| ECR["Amazon ECR"]
+    ECR -->|"[B] Pull Docker Image"| ECS["ECS Fargate"]
     
-    %% Frontend Deployment
-    Jenkins -->|"[C] Sync static files"| S3["S3 Frontend"]
-    Jenkins -->|"[D] Invalidate Cache"| CF["CloudFront"]
+    %% Frontend Pipeline
+    Jenkins -->|"Sync static files"| S3["S3 Frontend (Private)"]
+    Jenkins -->|"[C] Invalidate Cache"| CF["CloudFront"]
 ```
 
 ![MiniSocial Architecture](/images/2-Proposal/Minisocial-Architect_final.png)
 
 **AWS Services Used**
-- **Amazon VPC & Networking:** Multi-AZ subnets, NAT Gateway, and S3 Gateway Endpoint for secure isolation.
-- **Amazon ECS Fargate:** Serverless container execution for backend application nodes.
+- **Amazon VPC & Networking:** Multi-AZ subnets, NAT Gateway, and S3 Gateway Endpoint for secure network isolation.
+- **Amazon ECS Fargate:** Serverless container execution for backend application nodes (Multi-AZ).
 - **Amazon RDS for SQL Server:** Managed database service hosted in dedicated private subnets.
-- **Amazon S3 & CloudFront:** Secure frontend hosting via OAC and global content delivery.
-- **AWS WAF & ACM:** Enterprise-grade web application firewall protection and automated SSL/TLS certificates.
-- **Amazon Route 53:** Highly available DNS management.
+- **Amazon S3 & CloudFront:** Secure frontend hosting via OAC and global content delivery, plus media storage.
+- **AWS WAF & ACM:** Enterprise-grade web application firewall protecting both CloudFront and ALB, with automated SSL/TLS certificates from AWS Certificate Manager.
+- **Amazon Route 53:** Highly available DNS management for frontend and API domain routing.
 - **Amazon ECR & Jenkins:** Secure Docker registry and automated CI/CD pipelines.
-- **Amazon CloudWatch & EventBridge:** System logging, infrastructure metrics, and automated scheduling.
-- **AWS Systems Manager Parameter Store**: Secure storage and management of application configuration data and secrets.
+- **Amazon CloudWatch & EventBridge:** System logging, infrastructure metrics, and automated scheduling (cost optimization via start/stop schedules).
+- **AWS Secrets Manager:** Secure storage for sensitive secrets (DB passwords, JWT secrets, API keys).
+- **AWS Systems Manager Parameter Store:** Management of non-sensitive application configuration and environment variables.
 
 **Component Design**
-- **Frontend (Web Interface):** React application built with TypeScript, delivering the user interface through CloudFront.
-- **Backend (API Layer):** Spring Boot application running in Docker containers on ECS Fargate, handling business logic.
-- **Data Storage:** Amazon RDS for SQL Server serves as the primary relational database.
-- **CI/CD Pipeline:** Jenkins servers orchestrate the build, test, and deployment phases using declarative Jenkinsfiles.
-- **Security & Access:** AWS WAF inspects incoming traffic at the edge and at the ALB level to block malicious requests. 
+- **Frontend (Web Interface):** React application built with TypeScript, delivered through CloudFront with OAC-restricted access to a private S3 bucket.
+- **Backend (API Layer):** Spring Boot application running in Docker containers on ECS Fargate across 2 Availability Zones, handling business logic with sticky session support for WebSocket.
+- **Data Storage:** Amazon RDS for SQL Server in a private subnet serves as the primary relational database.
+- **CI/CD Pipeline:** Jenkins server orchestrates build, test, and deployment — Backend via ECR → ECS, Frontend via S3 → CloudFront invalidation.
+- **Security & Access:** Dual AWS WAF layers inspect traffic at CloudFront (edge) and ALB (VPC) to block malicious requests. Secrets Manager and SSM Parameter Store manage credentials securely.
 
 ### 4. Technical Implementation
 **Implementation Phases** 
@@ -159,3 +174,5 @@ AWS Services (Estimated Monthly):
 **Long-term Value:**
 - A highly reusable, modular CloudFormation blueprint for future enterprise applications.
 - A robust training environment for engineers transitioning to AWS Cloud-Native architectures.
+
+> * Logical Architecture Diagram (Full HD): [View details here](https://mini-social-architect.s3.ap-southeast-1.amazonaws.com/Minisocial_Architect_final.png)
