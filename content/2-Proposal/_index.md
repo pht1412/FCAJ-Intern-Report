@@ -63,7 +63,7 @@ flowchart LR
     ECS1 -->|"[6] Read/Write Data"| RDS["RDS SQL Server (Private Subnet)"]
     ECS2 -->|"[6] Read/Write Data"| RDS
     
-    %% [7] Upload Media qua VPC Endpoint
+    %% [7] Upload Media to VPC Endpoint
     ECS1 -->|"[7a] Upload Media"| VPCE["S3 VPC Gateway Endpoint"]
     ECS2 -->|"[7a] Upload Media"| VPCE
     VPCE -->|"[7b] Save to S3"| S3M["Amazon S3 (Media Storage)"]
