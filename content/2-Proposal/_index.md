@@ -88,8 +88,8 @@ flowchart LR
     ECR -->|"[B] Pull Docker Image"| ECS["ECS Fargate"]
     
     %% Frontend Pipeline
-    Jenkins -->|"Sync static files"| S3["S3 Frontend (Private)"]
-    Jenkins -->|"[C] Invalidate Cache"| CF["CloudFront"]
+    Jenkins -.->|"[E] Upload Static Files"| S3["S3 Frontend (Private)"]
+    Jenkins -.->|"[C] Create Invalidation (Clear Cache)"| CF["CloudFront"]
 ```
 
 ![MiniSocial Architecture](/images/2-Proposal/Minisocial-Architect_final.png)
@@ -175,4 +175,4 @@ AWS Services (Estimated Monthly):
 - A highly reusable, modular CloudFormation blueprint for future enterprise applications.
 - A robust training environment for engineers transitioning to AWS Cloud-Native architectures.
 
-> * Logical Architecture Diagram (Full HD): [View details here](https://mini-social-architect.s3.ap-southeast-1.amazonaws.com/Minisocial_Architect_final.png)
+> * Logical Architecture Diagram (Full HD): [View details here](https://mini-social-architect.s3.ap-southeast-1.amazonaws.com/MiniSocial_Architect_final.png)
