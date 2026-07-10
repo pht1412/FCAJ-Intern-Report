@@ -65,8 +65,9 @@ flowchart LR
     ECS2 -->|"[6] Đọc/Ghi dữ liệu"| RDS
     
     %% [7] Upload Media qua VPC Endpoint
-    ECS1 -->|"[7] Upload Media Files"| S3M["S3 Media Storage"]
-    ECS2 -->|"[7] Upload Media Files"| S3M
+    ECS1 -->|"[7a] Upload Media"| VPCE["S3 VPC Gateway Endpoint"]
+    ECS2 -->|"[7a] Upload Media"| VPCE
+    VPCE -->|"[7b] Save to S3"| S3M["Amazon S3 (Media Storage)"]
     
     %% [8-9] Monitoring
     ECS1 -->|"[8] Đẩy Logs & Metrics"| CW["CloudWatch"]
