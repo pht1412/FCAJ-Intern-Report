@@ -1,9 +1,9 @@
 ---
 title: "Chia sẻ, đóng góp ý kiến"
 date: 2026-07-05
-weight: 7
+weight: 8
 chapter: false
-pre: " <b> 7. </b> "
+pre: " <b> 8. </b> "
 ---
 
 > Tại đây, tôi xin tự do đóng góp ý kiến cá nhân và nhìn lại toàn bộ trải nghiệm khi tham gia chương trình thực tập của **Bootcamp First Cloud AI Journey (FCAJ)**. Những đánh giá dưới đây được đúc kết từ góc nhìn thực tiễn của một người đảm nhận vai trò Team Leader của một nhóm đa chuyên môn (Dev, Security, Network).

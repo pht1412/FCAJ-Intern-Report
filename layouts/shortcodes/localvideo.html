@@ -1,0 +1,24 @@
+{{ $file := .Get 0 }}
+{{ $path := printf "static/videos/%s" $file }}
+{{ if fileExists $path }}
+<video width="100%" controls>
+  <source src="/videos/{{ $file }}" type="video/mp4">
+  {{ if eq .Page.Language.Lang "vi" }}
+  Trình duyệt của bạn không hỗ trợ thẻ video.
+  {{ else }}
+  Your browser does not support the video tag.
+  {{ end }}
+</video>
+{{ else }}
+<div
+  style="padding: 2rem; background-color: #e9ecef; color: #495057; border: 2px dashed #ced4da; border-radius: 0.5rem; text-align: center; margin: 1.5rem 0;">
+  <div style="font-size: 2rem; margin-bottom: 0.5rem;">🚧</div>
+  <h4 style="margin-top: 0; margin-bottom: 0;">
+    {{ if eq .Page.Language.Lang "vi" }}
+    Video demo đang trong giai đoạn phát triển
+    {{ else }}
+    Video demo is under development
+    {{ end }}
+  </h4>
+</div>
+{{ end }}

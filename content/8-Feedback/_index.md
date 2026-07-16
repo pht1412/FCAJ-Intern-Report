@@ -1,9 +1,9 @@
 ---
 title: "Sharing & Feedback"
 date: 2026-07-05
-weight: 7
+weight: 8
 chapter: false
-pre: " <b> 7. </b> "
+pre: " <b> 8. </b> "
 ---
 
 > In this section, I would like to freely share my personal opinions and reflect on my entire experience participating in the **Bootcamp First Cloud AI Journey (FCAJ)**. The evaluations below are drawn from the practical perspective of someone who took on the role of Team Leader for a cross-functional team (Dev, Security, Network).
