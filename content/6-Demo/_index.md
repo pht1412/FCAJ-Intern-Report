@@ -7,4 +7,26 @@ pre: "<b> 6. </b>"
 
 ## Demo Video
 
-{{< localvideo "Demo.mp4" >}}
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; border-radius: 8px;">
+  <iframe src="https://drive.google.com/file/d/18D_O7TjGVOEwvql084rL1-MDOYxK2t6J/preview" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+</div>
+
+---
+
+## Test Accounts
+
+You can use the following accounts to test the application:
+
+### User Accounts
+| Username | Password |
+| :--- | :--- |
+| `Test001` | `Test001` |
+| `Test002` | `Test002` |
+| `Test003` | `Test003` |
+| `Test004` | `Test004` |
+| `Test005` | `Test005` |
+
+### Admin Account
+| Username | Password |
+| :--- | :--- |
+| `Admin001` | `Admin001` |
