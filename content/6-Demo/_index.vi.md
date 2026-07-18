@@ -5,6 +5,12 @@ chapter: false
 pre: "<b> 6. </b>"
 ---
 
+{{% notice info %}}
+**Thông báo thời gian hoạt động:**  
+Nhóm chúng mình thực sự xin lỗi vì sự bất tiện này. Do cần tối ưu chi phí duy trì hạ tầng Cloud, ứng dụng thực tế (Live App) sẽ không thể hoạt động 24/24. 
+Hệ thống sẽ được cấu hình tự động **bật vào lúc 07:00 sáng** và **tắt vào lúc 19:00 tối** hàng ngày (theo giờ Việt Nam). Rất mong các bạn thông cảm cho nhóm nhé!
+{{% /notice %}}
+
 ## Video Demo
 
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; border-radius: 8px;">

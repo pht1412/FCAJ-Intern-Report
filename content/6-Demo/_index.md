@@ -5,6 +5,12 @@ chapter: false
 pre: "<b> 6. </b>"
 ---
 
+{{% notice info %}}
+**Service Availability Notice:**  
+We sincerely apologize for any inconvenience, but to optimize cloud infrastructure costs, our live application is not available 24/7. 
+The application is automatically **started up at 07:00 AM ICT** (Vietnam Time) and **shut down at 19:00 (7:00 PM) ICT** (Vietnam Time) daily. We appreciate your understanding!
+{{% /notice %}}
+
 ## Demo Video
 
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; border-radius: 8px;">
